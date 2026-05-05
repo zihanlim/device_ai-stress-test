@@ -261,11 +261,11 @@ Medium represents a different workflow: you're at your desk with a clean system 
 
 | Scenario | Duration | Memory Delta | Assessment |
 |----------|----------|-------------|------------|
-| Cold Start | 34.6ms | +11,408 MB | Fast |
-| Hot Start | 0.1ms | +11,408 MB | Instant |
-| Browsing (10 tabs) | 55.8ms | +76 MB | Normal |
-| IDE Workspace | 144.0ms | +191 MB | Normal |
-| Combined Workflow | 199.8ms | +11,675 MB | Smooth |
+| Cold Start | 11.9ms | +11,392 MB | Fast |
+| Hot Start | 0.0ms | +11,392 MB | Instant |
+| Browsing (10 tabs) | 18.4ms | +76 MB | Normal |
+| IDE Workspace | 46.7ms | +191 MB | Normal |
+| Combined Workflow | 95.6ms | +229 MB | Smooth |
 
 <div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
@@ -477,7 +477,7 @@ The parameter scale comparison reveals that **local inference is not about compe
 ---
 
 
-## 9. Docker and Containerization Considerations ()
+## 9. Docker and Containerization Considerations
 
 ### ERP Need for Docker for AI Engineering on MacBook Air M5?
 
@@ -562,7 +562,7 @@ If you do install Docker:
 
 ---
 
-## Procurement Recommendations
+## 11. Procurement Recommendations
 
 ### Unified Recommendations
 
@@ -591,7 +591,7 @@ If you do install Docker:
 
 ---
 
-## 11. Conclusion
+## 12. Conclusion
 
 The MacBook Air M5 16GB is a **sufficient device for API-based AI engineering** and a **good device for local small model development**. Its limitations are clear but acceptable for its intended use case, and in most ERP use cases sufficient.
 
