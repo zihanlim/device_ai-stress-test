@@ -1,0 +1,23 @@
+=== Storage Benchmark ===
+--- Storage Info ---
+Total Disk: 460Gi
+Available: 353Gi
+
+--- Sequential Write Test ---
+Testing with block size: 1m
+Write speed: ~6870.96 MB/s
+Testing with block size: 10m
+Write speed: ~593.19 MB/s
+
+--- Sequential Read Test ---
+Read speed: ~13991.88 MB/s
+
+--- Random I/O Test (4K blocks) ---
+Random write (4K): ~213.74 MB/s
+
+--- Model Loading Simulation ---
+Simulating load of 4096 MB file...
+Model file (200 MB sample) load time: .014391000s
+Estimated 4096 MB load time: ~0s
+
+Storage Benchmark complete

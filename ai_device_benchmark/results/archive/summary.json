@@ -1,0 +1,17 @@
+{
+    "device": {
+        "name": "MacBook-Air-M5",
+        "tag": "16GB-500GB",
+        "hostname": "Arnolds-MacBook-Air",
+        "date": "2026-05-04T00:00:00-07:00",
+        "os": "15.4"
+    },
+    "hardware": {
+        "model": "Mac16,12",
+        "chip": "Apple M5",
+        "physical_cores": 10,
+        "logical_cores": 10,
+        "memory_gb": 16.0,
+        "memory_mb": 16384
+    }
+}

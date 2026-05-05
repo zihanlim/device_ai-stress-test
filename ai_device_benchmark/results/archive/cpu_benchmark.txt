@@ -1,0 +1,38 @@
+=== CPU Benchmark ===
+--- System Info ---
+Model: Mac17,3
+CPU Brand: Apple M5
+Physical Cores: 10
+Logical Cores: 10
+L2 Cache: 6.0 MB
+L3 Cache: 
+
+--- Single-threaded Performance ---
+Fibonacci(100000): 0.1150s
+Fibonacci(500000): 2.8232s
+Fibonacci(1000000): 11.5296s
+
+Sieve(100000): 0.0038s (9592 primes)
+Sieve(500000): 0.0242s (41538 primes)
+Sieve(1000000): 0.0532s (78498 primes)
+
+--- Multi-core Scaling Test ---
+Running single-core baseline...
+  Single-core (n=5000000): 10.09s
+Running 2-core test...
+  2-core: 7.94s (speedup: 1.27x, efficiency: 64%)
+Running 4-core test...
+  4-core: 5.22s (speedup: 1.93x, efficiency: 48%)
+Running 8-core test...
+  8-core: 3.20s (speedup: 3.15x, efficiency: 39%)
+Running 10-core test...
+  10-core: 2.84s (speedup: 3.56x, efficiency: 36%)
+
+--- ML Workload Simulation ---
+MatMul 512x512: 0.26 ms/op (1.01 TFLOPS)
+MatMul 1024x1024: 1.65 ms/op (1.30 TFLOPS)
+MatMul 2048x2048: 14.67 ms/op (1.17 TFLOPS)
+
+CPU Benchmark complete. Data saved to: results/cpu_data.txt
+
+CPU Benchmark complete

@@ -1,0 +1,16 @@
+test,value,unit
+TotalMemory_MB,16384,MB
+TotalMemory_GB,16.0,GB
+Alloc_1000000,0.0198,ms
+Alloc_10000000,0.0031,ms
+Alloc_100000000,0.0081,ms
+SequentialCopy_BW,14.4717,GB/s
+StridedAccess_BW,1.8524,GB/s
+Initial_Swap,0.00,MB
+Pressure_AllocTime,0.0024,s
+Pressure_SwapAfter,0.00,MB
+Pressure_SwapFinal,0.00,MB
+SwapTest_20pct,0.00,MB
+SwapTest_40pct,0.00,MB
+SwapTest_60pct,0.00,MB
+SwapTest_80pct,0.00,MB

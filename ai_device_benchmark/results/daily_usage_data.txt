@@ -1,0 +1,6 @@
+scenario,start_time_s,end_time_s,duration_s,memory_delta_mb,swap_delta_mb
+baseline,0.00,1777876924.06,0.00,21184,0
+ColdStart_Total,0,1777876924.09,0.0346,11408,0
+HotStart_Total,1777876924.10,1777876924.10,0.0001,11408,0
+Browsing_10Tabs,1777876924.16,1777876924.16,0.0558,76,0
+IDE_Workspace,1777876924.32,1777876924.32,0.1440,191,0

@@ -1,0 +1,39 @@
+=== Memory Benchmark ===
+--- System Memory Info ---
+Total Memory: 16.0 GB
+Page Size: 16384 bytes
+
+Total Memory: 16.0 GB (16384 MB)
+--- Memory Bandwidth Test ---
+Running memory copy/allocate test...
+
+Allocation speed:
+  Allocate 1,000,000 float64s: 0.02 ms
+  Allocate 10,000,000 float64s: 0.00 ms
+  Allocate 100,000,000 float64s: 0.00 ms
+
+Sequential copy bandwidth:
+  Sequential copy: 6.78 GB/s
+
+Strided access bandwidth:
+  Strided access: 0.47 GB/s
+
+--- Memory Pressure Test ---
+Initial swap usage: 0 MB
+
+Allocating 80% of memory (13107 MB)...
+Touching all pages...
+  Allocation time: 0.00s
+  Swap after allocation: 0 MB
+  Swap after free: 0 MB
+
+--- Swap Behavior Test ---
+Testing swap under increasing load...
+  20% load (3276 MB)... swap: 0 MB
+  40% load (6553 MB)... swap: 0 MB
+  60% load (9830 MB)... swap: 0 MB
+  80% load (13107 MB)... swap: 0 MB
+
+Memory Benchmark complete. Data saved to: results/memory_data.txt
+
+Memory Benchmark complete

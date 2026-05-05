@@ -1,0 +1,29 @@
+=== Memory Pressure Benchmark ===
+--- System Memory Info ---
+Total Memory: 16.0 GB
+Page Size: 16384 bytes
+
+--- Scenario 1: Light Daily Usage ---
+(Simulates: Browser (10 tabs) + VSCode + Terminal + Slack)
+Estimated light usage: 3548 MB
+  Baseline: 2048 MB allocated, swap: 0 MB
+  Browser: 2848 MB allocated, swap: 0 MB
+  IDE: 3348 MB allocated, swap: 0 MB
+  Terminal: 3448 MB allocated, swap: 0 MB
+  Slack: 3548 MB allocated, swap: 0 MB
+Total allocated: 3548 MB
+Swap used: 0 MB
+Data written to: ../results/memory_pressure_data.txt
+
+--- Scenario 2: Medium Usage + Background LLM ---
+(Simulates: Light usage + Ollama/MLX running 7B model)
+Estimated with background LLM: 7944 MB
+Baseline: 2048 MB
+LLM Model: 6144 MB (total)
+Swap usage: 0 MB
+Data written to: ../results/memory_pressure_data.txt
+
+--- Scenario 3: 8GB Memory Pressure Test ---
+(Allocates 80% of memory to test swapping behavior)
+
+Memory Pressure Benchmark complete

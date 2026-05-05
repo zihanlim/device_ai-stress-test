@@ -1,0 +1,16 @@
+=== Core ML / Neural Engine Benchmark ===
+--- System Info ---
+Chip: Apple M5
+
+--- Neural Engine Availability ---
+Core ML tools not found in standard location
+
+--- Metal / MPS Support ---
+PyTorch MPS check failed (PyTorch may not be installed)
+
+--- Core ML Inference Benchmark ---
+Core ML Tools not installed (pip install coremltools)
+PyTorch not installed
+No Core ML/MPS backend available for benchmark
+
+Core ML Benchmark complete
