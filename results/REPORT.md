@@ -606,7 +606,7 @@ The MacBook Air M5 16GB is a **sufficient device for API-based AI engineering** 
 - Neural Engine underutilized by current LLM frameworks
 - 4B-8B models are usable but not enjoyable (slow TPS)
 
-**Final Verdict:** MacBook Air M5 16GB is the **right choice** for AI engineers primarily using API-based AI (Claude, Coding Plans). Teams requiring regular local 7B+ model usage should budget for MacBook Pro 32GB.
+**Final Verdict:** MacBook Air M5 16GB is the **right choice** for AI engineers primarily using API-based AI (Claude, Coding Plans).
 
 ---
 
