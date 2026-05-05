@@ -36,7 +36,7 @@ mem_data = os.path.join(results_dir, 'memory_pressure_data.txt')
 
 def get_swap():
     result = subprocess.run(['sysctl', 'vm.swapusage'], capture_output=True, text=True)
-    output = result.stdout.decode() if isinstance(result.stdout, bytes) else result.stdout
+    output = result.stdout if isinstance(result.stdout, str) else result.stdout.decode()
     import re
     match = re.search(r'\+\s*([\d.]+)M', output)
     return float(match.group(1)) if match else 0.0
@@ -112,20 +112,22 @@ mem_data = os.path.join(results_dir, 'memory_pressure_data.txt')
 
 def get_swap():
     result = subprocess.run(['sysctl', 'vm.swapusage'], capture_output=True, text=True)
-    output = result.stdout.decode() if isinstance(result.stdout, bytes) else result.stdout
+    output = result.stdout if isinstance(result.stdout, str) else result.stdout.decode()
     import re
     match = re.search(r'\+\s*([\d.]+)M', output)
     return float(match.group(1)) if match else 0.0
 
 llm_model_mb = 4096
-total_with_llm = 3848 + llm_model_mb
+baseline_mb = 2048
+total_with_llm = baseline_mb + llm_model_mb
 
 print(f"Estimated with background LLM: {total_with_llm} MB")
 
 pages = []
 swap_used = 0
 try:
-    arr = np.zeros(int(2048 * 1024 * 1024 / 8), dtype=np.float64)
+    # Light baseline (same as Light scenario: 2GB)
+    arr = np.zeros(int(baseline_mb * 1024 * 1024 / 8), dtype=np.float64)
     arr[:] = 1
     pages.append(arr)
     print(f"Baseline: {sum(p.nbytes for p in pages) / 1024 / 1024:.0f} MB")
@@ -179,13 +181,13 @@ mem_data = os.path.join(results_dir, 'memory_pressure_data.txt')
 
 def get_swap():
     result = subprocess.run(['sysctl', 'vm.swapusage'], capture_output=True, text=True)
-    output = result.stdout.decode() if isinstance(result.stdout, bytes) else result.stdout
+    output = result.stdout if isinstance(result.stdout, str) else result.stdout.decode()
     import re
     match = re.search(r'\+\s*([\d.]+)M', output)
     return float(match.group(1)) if match else 0.0
 
 total_mem = subprocess.run(['sysctl', '-n', 'hw.memsize'], capture_output=True, text=True)
-total_mb = int(total_mem.stdout.decode().strip()) / 1024 / 1024
+total_mb = int(total_mem.stdout.strip()) / 1024 / 1024
 
 print(f"Total system memory: {total_mb:.0f} MB")
 print(f"Testing with 8GB allocation...")
@@ -207,9 +209,8 @@ try:
     for i in range(0, len(arr), step):
         arr[i] = i % 256
 
-    swap_after = get_swap()
-    print(f"Swap after allocation: {swap_after:.0f} MB")
-    print(f"Swap delta: {swap_after - swap_before:.0f} MB")
+    mid_swap = get_swap()
+    print(f"Swap mid-test: {mid_swap:.0f} MB")
 
     print("\nPerforming memory-intensive operations...")
     start = time.time()
@@ -219,9 +220,15 @@ try:
     elapsed = time.time() - start
     print(f"Memory access time (1000 samples): {elapsed:.3f}s")
 
+    swap_after = get_swap()
+    swap_delta = swap_after - swap_before
+    print(f"Swap after: {swap_after:.0f} MB (delta: {swap_delta:.0f} MB)")
+
+    # Heavy_Alloc = memory allocated during stress test
+    # Heavy_Total = allocated + swap used (true memory pressure)
     with open(mem_data, 'a') as f:
-        f.write(f"Heavy_Alloc,{allocated_mb},0,{swap_after:.0f}\n")
-        f.write(f"Heavy_Total,{allocated_mb},0,{swap_after:.0f}\n")
+        f.write(f"Heavy_Alloc,{allocated_mb},0,{mid_swap:.0f}\n")
+        f.write(f"Heavy_Total,{allocated_mb + int(swap_delta):.0f},{elapsed:.2f},{swap_after:.0f}\n")
 
 except MemoryError:
     print("MemoryError: Cannot allocate 8GB")

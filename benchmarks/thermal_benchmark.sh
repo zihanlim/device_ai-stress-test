@@ -1,13 +1,13 @@
 #!/bin/bash
-# Thermal Throttling Benchmark
-# Tests CPU frequency maintenance under sustained load
-set -e
+# Thermal Throttling Benchmark - Redesigned
+# Tests CPU frequency and performance maintenance under sustained multi-core load
+# Shows how thermal throttling affects performance at different core counts
 
 RESULTS_DIR="${1:-../results}"
 PLOT_DIR="$RESULTS_DIR/plots"
 mkdir -p "$RESULTS_DIR/plots"
 
-echo "=== Thermal Throttling Benchmark ===" | tee "$RESULTS_DIR/thermal_benchmark.txt"
+echo "=== Thermal Throttling Benchmark (Redesigned) ===" | tee "$RESULTS_DIR/thermal_benchmark.txt"
 
 THERMAL_DATA="$RESULTS_DIR/thermal_data.txt"
 
@@ -18,176 +18,111 @@ echo "Chip: $(sysctl -n machdep.cpu.brand_string)" | tee -a "$RESULTS_DIR/therma
 echo "Physical Cores: $(sysctl -n hw.physicalcpu)" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
 echo "" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
 
-# Check for thermal monitoring tools
-echo "--- Thermal Monitoring Tools ---" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-if command -v powermetrics &> /dev/null; then
-    echo "powermetrics: AVAILABLE" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-else
-    echo "powermetrics: NOT AVAILABLE" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-fi
+# Clear previous data
+echo "test,value,unit" > "$THERMAL_DATA"
 
-# TG Pro / iStat check
-if [ -d "/Applications/TG Pro.app" ] || [ -d "$HOME/Applications/TG Pro.app" ]; then
-    echo "TG Pro: INSTALLED" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-else
-    echo "TG Pro: NOT INSTALLED" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-fi
-
-if [ -d "/Applications/iStat Menus.app" ] || [ -d "$HOME/Applications/iStat Menus.app" ]; then
-    echo "iStat Menus: INSTALLED" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-else
-    echo "iStat Menus: NOT INSTALLED" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-fi
-
-echo "" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
-
-# Write Python script to temp file to avoid heredoc issues
-cat > /tmp/thermal_benchmark.py << 'PYEOF'
+# Write Python script - using threading not multiprocessing (avoid fork issues in bash)
+python3 - "$RESULTS_DIR" << 'PYEOF'
 import time
-import numpy as np
-import subprocess
 import threading
 import sys
+import os
+from collections import deque
 
-THERMAL_DATA = sys.argv[1]
-PLOT_DIR = sys.argv[2]
+RESULTS_DIR = sys.argv[1]
 
-# Data collection
-times = []
-cpu_freqs = []
-stop_flag = False
+def cpu_intensive_work(duration_s, result_list, idx):
+    """Do sustained CPU work and report performance metrics"""
+    start_time = time.time()
+    iterations = 0
+    operation_times = []
 
-def monitor_system():
-    """Monitor CPU frequency in background"""
-    global stop_flag
-    while not stop_flag:
-        try:
-            result = subprocess.run(['sysctl', '-n', 'hw.cpufrequency'], capture_output=True, text=True)
-            freq_hz = int(result.stdout.strip())
-            freq_ghz = freq_hz / 1e9
-            cpu_freqs.append(freq_ghz)
-        except:
-            cpu_freqs.append(0)
-        time.sleep(5)  # Sample every 5 seconds
+    while time.time() - start_time < duration_s:
+        iter_start = time.time()
 
-# Start monitoring thread
-monitor = threading.Thread(target=monitor_system)
-monitor.start()
+        # CPU-intensive integer work (not floating point, more representative of general compute)
+        total = 0
+        for i in range(500000):
+            total += i * 17 % 31
 
-print("Running sustained CPU load (5 minutes)...")
+        iter_time = time.time() - iter_start
+        operation_times.append(iter_time * 1000)  # Convert to ms
+        iterations += 1
 
-iteration = 0
-start_time = time.time()
+    result_list[idx] = operation_times
 
-# Initial intense phase (first 30 seconds)
-print("Phase A: Initial burst (30s)...")
-for i in range(30):
-    iter_start = time.time()
-    x = np.random.rand(500, 500)
-    y = np.random.rand(500, 500)
-    z = np.dot(x, y)
-    _ = np.sum(z)
-    elapsed = time.time() - iter_start
-    times.append(elapsed * 1000)
-    if i % 5 == 0:
-        elapsed_total = time.time() - start_time
-        print(f"  {elapsed_total:.0f}s: {elapsed*1000:.1f} ms/op")
-    iteration += 1
+def run_thermal_test(num_threads, duration_s=120):
+    """Run thermal test with specified number of threads for duration"""
+    print(f"\n--- Testing {num_threads} thread(s) for {duration_s}s ---")
 
-# Sustained phase (4.5 minutes = 270 seconds total)
-print("\nPhase B: Sustained load (4.5 min)...")
-sample_count = 0
-while time.time() - start_time < 300:  # 5 minutes total
-    iter_start = time.time()
-    x = np.random.rand(400, 400)
-    y = np.random.rand(400, 400)
-    z = np.dot(x, y)
-    _ = np.sum(z)
-    elapsed = time.time() - iter_start
-    times.append(elapsed * 1000)
+    # Use threads since we're in a bash heredoc and can't use fork safely
+    result_list = [None] * num_threads
+    threads = []
 
-    sample_count += 1
-    if sample_count % 20 == 0:  # Print every ~20 seconds
-        elapsed_total = time.time() - start_time
-        avg_recent = np.mean(times[-20:])
-        print(f"  {elapsed_total:.0f}s: {elapsed*1000:.1f} ms/op (avg recent: {avg_recent:.1f} ms)")
+    # Start worker threads
+    for i in range(num_threads):
+        t = threading.Thread(target=cpu_intensive_work, args=(duration_s, result_list, i))
+        t.start()
+        threads.append(t)
 
-# Stop monitoring
-stop_flag = True
-monitor.join()
+    # Wait for all threads
+    for t in threads:
+        t.join()
 
-# Analysis
-print("\n" + "="*50)
-print("THERMAL THROTTLING ANALYSIS")
-print("="*50)
+    # Analyze results
+    all_times = []
+    for times in result_list:
+        if times:
+            all_times.extend(times)
 
-# Divide into phases
-n = len(times)
-phase1 = times[:30] if len(times) >= 30 else times
-phase2 = times[30:90] if len(times) > 30 else []
-phase3 = times[90:] if len(times) > 90 else []
+    # Divide into time windows (first 10s, middle, end)
+    n = len(all_times)
+    window_size = min(n // 3, 100)
 
-if len(phase1) > 0:
-    print(f"\nPhase 1 (0-30s):  avg = {np.mean(phase1):.1f} ms/op")
-if len(phase2) > 0:
-    print(f"Phase 2 (30-90s): avg = {np.mean(phase2):.1f} ms/op")
-if len(phase3) > 0:
-    print(f"Phase 3 (90s+):  avg = {np.mean(phase3):.1f} ms/op")
+    early_avg = sum(all_times[:window_size]) / window_size if window_size > 0 else 0
+    mid_avg = sum(all_times[n//3:n//3+window_size]) / window_size if window_size > 0 else 0
+    late_avg = sum(all_times[-window_size:]) / window_size if window_size > 0 else 0
 
-# Calculate throttling
-if len(phase1) > 0 and len(phase3) > 0 and np.mean(phase1) > 0:
-    phase3_drop = (1 - np.mean(phase3) / np.mean(phase1)) * 100
-    print(f"\nPerformance drop Phase 1 -> Phase 3: {phase3_drop:.1f}%")
+    print(f"  Early ({duration_s//3}s): {early_avg:.2f} ms/op")
+    print(f"  Mid ({duration_s//3*2}s): {mid_avg:.2f} ms/op")
+    print(f"  Late ({duration_s}s): {late_avg:.2f} ms/op")
 
-    if phase3_drop > 20:
-        print("\n⚠️  SIGNIFICANT THROTTLING DETECTED (>20% drop)")
-    elif phase3_drop > 10:
-        print("\n⚡ MODERATE THROTTLING (10-20% drop)")
-    else:
-        print("\n✓ MINIMAL THROTTLING (<10% drop)")
+    if early_avg > 0:
+        degradation = (1 - late_avg / early_avg) * 100
+        print(f"  Thermal degradation: {degradation:.1f}%")
 
-# Save ALL data to thermal_data.txt
+    return {
+        'threads': num_threads,
+        'early': early_avg,
+        'mid': mid_avg,
+        'late': late_avg,
+        'degradation': degradation if early_avg > 0 else 0
+    }
+
+# Run tests for different thread counts (2, 4, 6, 8, 10)
+results = []
+
+for threads in [2, 4, 6, 8, 10]:
+    try:
+        result = run_thermal_test(threads, duration_s=120)
+        results.append(result)
+    except Exception as e:
+        print(f"Error testing {threads} threads: {e}")
+
+# Save results
+THERMAL_DATA = os.path.join(RESULTS_DIR, "thermal_data.txt")
+
 with open(THERMAL_DATA, "w") as f:
-    # Header
-    f.write("metric,value\n")
+    f.write("test,value,unit\n")
 
-    # Phase summaries
-    f.write(f"phase1_avg,{np.mean(phase1):.4f}\n")
-    if len(phase2) > 0:
-        f.write(f"phase2_avg,{np.mean(phase2):.4f}\n")
-    if len(phase3) > 0:
-        f.write(f"phase3_avg,{np.mean(phase3):.4f}\n")
-
-    # CPU frequency stats
-    valid_freqs = [f for f in cpu_freqs if f > 0]
-    if valid_freqs:
-        f.write(f"freq_initial,{valid_freqs[0]:.2f}\n")
-        f.write(f"freq_avg,{np.mean(valid_freqs):.2f}\n")
-        f.write(f"freq_min,{np.min(valid_freqs):.2f}\n")
-        f.write(f"freq_final,{valid_freqs[-1]:.2f}\n")
-
-    # All iteration times
-    f.write("\niteration,time_ms,phase\n")
-    for i, t in enumerate(times):
-        if i < 30:
-            phase = "initial"
-        elif i < 90:
-            phase = "rampdown"
-        else:
-            phase = "sustained"
-        f.write(f"{i},{t:.2f},{phase}\n")
-
-    # All frequency samples
-    if cpu_freqs:
-        f.write("\nfrequency_sample,freq_ghz,elapsed_seconds\n")
-        for i, freq in enumerate(cpu_freqs):
-            f.write(f"{i},{freq:.2f},{i*5}\n")
+    for r in results:
+        f.write(f"thermal_{r['threads']}t_early,{r['early']:.4f},ms\n")
+        f.write(f"thermal_{r['threads']}t_mid,{r['mid']:.4f},ms\n")
+        f.write(f"thermal_{r['threads']}t_late,{r['late']:.4f},ms\n")
+        f.write(f"thermal_{r['threads']}t_degradation,{r['degradation']:.2f},%\n")
 
 print(f"\nData saved to: {THERMAL_DATA}")
 PYEOF
-
-# Run the Python script
-python3 /tmp/thermal_benchmark.py "$THERMAL_DATA" "$PLOT_DIR" 2>&1 | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
 
 echo "" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"
 echo "Thermal Throttling Benchmark complete" | tee -a "$RESULTS_DIR/thermal_benchmark.txt"

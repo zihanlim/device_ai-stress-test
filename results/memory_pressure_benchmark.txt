@@ -17,7 +17,7 @@ Data written to: ../results/memory_pressure_data.txt
 
 --- Scenario 2: Medium Usage + Background LLM ---
 (Simulates: Light usage + Ollama/MLX running 7B model)
-Estimated with background LLM: 7944 MB
+Estimated with background LLM: 6144 MB
 Baseline: 2048 MB
 LLM Model: 6144 MB (total)
 Swap usage: 0 MB
@@ -25,5 +25,18 @@ Data written to: ../results/memory_pressure_data.txt
 
 --- Scenario 3: 8GB Memory Pressure Test ---
 (Allocates 80% of memory to test swapping behavior)
+Total system memory: 16384 MB
+Testing with 8GB allocation...
+Swap before: 0 MB
+Allocating 8192 MB...
+Touching all pages (writing to memory)...
+Swap mid-test: 0 MB
+
+Performing memory-intensive operations...
+Memory access time (1000 samples): 0.510s
+Swap after: 0 MB (delta: 0 MB)
+
+Memory pressure test complete.
+Data written to: ../results/memory_pressure_data.txt
 
 Memory Pressure Benchmark complete

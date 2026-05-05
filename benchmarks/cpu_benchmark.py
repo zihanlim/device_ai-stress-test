@@ -48,6 +48,14 @@ def run_sieve_parallel(n, cores):
 
     return sum(results)
 
+# Module-level function for multiprocessing (must be picklable)
+def run_fib_chunk(args):
+    start, end = args
+    count = 0
+    for n in range(start, end):
+        count += fib_iterative(n)
+    return count
+
 def main():
     if len(sys.argv) < 2:
         results_dir = os.path.dirname(os.path.abspath(__file__)) + '/../results'
@@ -98,14 +106,30 @@ def main():
     with open(CPU_DATA, "a") as f:
         f.write(f"SingleCore_Time,{single_core_time:.6f},s\n")
 
-    # Multi-core tests
-    for cores in [2, 4, 8, available_cores]:
+    # Multi-core tests - test ALL core configurations: 1, 2, 4, 6, 8, 10
+    for cores in [1, 2, 4, 6, 8, 10]:
         if cores > available_cores:
             continue
         print(f"Running {cores}-core test...")
+
+        # Use is_prime (same as single-core baseline) for consistent comparison
+        n_tasks = 5000000  # Same workload as single-core baseline
+
         start = time.time()
-        result = run_sieve_parallel(n, cores)
+        if cores == 1:
+            # Single process - same as baseline
+            result = sum(1 for i in range(n_tasks) if is_prime(i))
+        else:
+            # Multi-process using pool
+            chunk_size = n_tasks // cores
+            ranges = [(i*chunk_size, (i+1)*chunk_size) for i in range(cores)]
+            if n_tasks % cores != 0:
+                ranges[-1] = (ranges[-1][0], n_tasks)
+            with multiprocessing.Pool(processes=cores) as pool:
+                results = pool.map(chunk_range, ranges)
+            result = sum(results)
         elapsed = time.time() - start
+
         speedup = single_core_time / elapsed
         efficiency = (speedup / cores) * 100
 

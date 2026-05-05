@@ -220,54 +220,92 @@ def generate_memory_plot(memory_file, plot_dir):
     print(f"Saved: {plot_dir}/memory_pressure_benchmark.png")
 
 def generate_thermal_plot(thermal_file, plot_dir):
-    """Generate thermal throttling plot from REAL data"""
+    """Generate thermal throttling plot from REAL data - new format with thread counts"""
     if not os.path.exists(thermal_file):
-        print(f"Thermal data not found: {thermal_file}")
+        print("Thermal data not found, skipping")
         return
 
-    iterations, phases = parse_iteration_file(thermal_file, col_time=1, col_note=2)
+    data = parse_key_value_file(thermal_file)
 
-    if not iterations:
+    if not data:
         print("No thermal data found")
         return
 
-    times_display = [min(t, 100) for t in iterations]
+    # Check if new format (thermal_Nt_early) or old format (iteration data)
+    if 'thermal_2t_early' in data:
+        # New format - aggregated by thread count
+        thread_counts = []
+        early_times = []
+        mid_times = []
+        late_times = []
+        degradations = []
 
-    fig, axes = plt.subplots(2, 1, figsize=(14, 10))
+        for key in sorted(data.keys()):
+            if key.startswith('thermal_') and key.endswith('_early'):
+                threads = int(key.split('_')[1].replace('t', ''))
+                thread_counts.append(threads)
+                early_times.append(data[key])
+                mid_times.append(data.get(f'thermal_{threads}t_mid', 0))
+                late_times.append(data.get(f'thermal_{threads}t_late', 0))
+                degradations.append(data.get(f'thermal_{threads}t_degradation', 0))
 
-    ax1 = axes[0]
-    x = range(len(times_display))
-    colors = ['green' if p == 'initial' else 'orange' if p == 'rampdown' else 'red' for p in phases[:len(x)]]
+        if not thread_counts:
+            print("No thermal data with thread counts found")
+            return
 
-    ax1.scatter(x, times_display, c=colors, alpha=0.6, s=10)
-    ax1.axhline(y=10, color='orange', linestyle='--', alpha=0.7, label='Throttle threshold')
-    ax1.axhline(y=50, color='red', linestyle='--', alpha=0.7, label='Severe throttle')
+        fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
-    ax1.set_xlabel('Iteration')
-    ax1.set_ylabel('Time per Operation (ms)')
-    ax1.set_title('CPU Performance Under Sustained Load (5 min test)')
-    ax1.legend()
-    ax1.grid(True, alpha=0.3)
+        ax1 = axes[0]
+        colors = ['green' if d < 2 else 'orange' if d < 5 else 'red' for d in degradations]
+        bars = ax1.bar(range(len(thread_counts)), degradations, color=colors, edgecolor='black')
+        ax1.set_xticks(range(len(thread_counts)))
+        ax1.set_xticklabels([f'{t} threads' for t in thread_counts])
+        ax1.set_ylabel('Thermal Degradation (%)')
+        ax1.set_title('Thermal Throttling by Thread Count (120s test)')
+        ax1.axhline(y=0, color='black', linestyle='-', linewidth=0.5)
+        ax1.axhline(y=5, color='orange', linestyle='--', alpha=0.5, label='Moderate (5%)')
+        ax1.axhline(y=10, color='red', linestyle='--', alpha=0.5, label='Significant (10%)')
+        ax1.legend()
+        ax1.grid(True, alpha=0.3)
 
-    phase_1_end = phases.index('rampdown') if 'rampdown' in phases else 30
-    phase_2_end = phases.index('sustained') if 'sustained' in phases else 90
-    if phase_1_end < len(x):
-        ax1.axvline(x=phase_1_end, color='orange', linestyle='--', alpha=0.5)
-    if phase_2_end < len(x):
-        ax1.axvline(x=phase_2_end, color='red', linestyle='--', alpha=0.5)
+        for bar, deg in zip(bars, degradations):
+            ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.2,
+                    f'{deg:.1f}%', ha='center', fontsize=9)
 
-    ax2 = axes[1]
-    ax2.hist(times_display, bins=50, color='steelblue', edgecolor='black', alpha=0.7)
-    ax2.set_xlabel('Time per Operation (ms)')
-    ax2.set_ylabel('Frequency')
-    ax2.set_title('Distribution of Operation Times')
-    ax2.axvline(x=np.mean(times_display), color='red', linestyle='--',
-                label=f'Mean: {np.mean(times_display):.1f}ms')
-    ax2.legend()
+        ax2 = axes[1]
+        x = np.arange(len(thread_counts))
+        width = 0.25
 
-    plt.tight_layout()
-    plt.savefig(f'{plot_dir}/thermal_benchmark.png', dpi=150, bbox_inches='tight')
-    print(f"Saved: {plot_dir}/thermal_benchmark.png")
+        ax2.bar(x - width, early_times, width, label='Early (0-40s)', color='lightgreen', edgecolor='black')
+        ax2.bar(x, mid_times, width, label='Mid (40-80s)', color='lightyellow', edgecolor='black')
+        ax2.bar(x + width, late_times, width, label='Late (80-120s)', color='lightcoral', edgecolor='black')
+
+        ax2.set_xticks(x)
+        ax2.set_xticklabels([f'{t}t' for t in thread_counts])
+        ax2.set_ylabel('Time per Operation (ms)')
+        ax2.set_xlabel('Thread Count')
+        ax2.set_title('Performance Over Time by Thread Count')
+        ax2.legend()
+        ax2.grid(True, alpha=0.3, axis='y')
+
+        plt.tight_layout()
+        plt.savefig(f'{plot_dir}/thermal_benchmark.png', dpi=150, bbox_inches='tight')
+        print(f"Saved: {plot_dir}/thermal_benchmark.png")
+
+        fig2, ax3 = plt.subplots(1, 1, figsize=(10, 6))
+        ax3.plot(thread_counts, early_times, 'g-o', label='Early (0-40s)', linewidth=2, markersize=8)
+        ax3.plot(thread_counts, mid_times, 'y-s', label='Mid (40-80s)', linewidth=2, markersize=8)
+        ax3.plot(thread_counts, late_times, 'r-^', label='Late (80-120s)', linewidth=2, markersize=8)
+        ax3.set_xlabel('Thread Count')
+        ax3.set_ylabel('Time per Operation (ms)')
+        ax3.set_title('Thermal Performance: Early vs Mid vs Late')
+        ax3.legend()
+        ax3.grid(True, alpha=0.3)
+        plt.tight_layout()
+        plt.savefig(f'{plot_dir}/thermal_benchmark_times.png', dpi=150, bbox_inches='tight')
+        print(f"Saved: {plot_dir}/thermal_benchmark_times.png")
+    else:
+        print("Old thermal data format detected, skipping detailed plot")
 
 def generate_daily_usage_plot(daily_file, plot_dir):
     """Generate daily usage plot from REAL data"""
