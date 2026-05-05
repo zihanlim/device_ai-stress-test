@@ -131,11 +131,13 @@ The MacBook Air M5 with 16GB is a sufficient choice for **API-centric AI enginee
 ![Thermal Benchmark](plots/thermal_benchmark.png)
 ![Thermal Benchmark Times](plots/thermal_benchmark_times.png)
 
-### Test Design
+<div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
-The thermal test measures performance degradation across different thread counts (2, 4, 6, 8, 10 threads) over a 120-second sustained workload. This shows how thermal throttling affects performance at different core utilization levels.
+**Thermal Test Design:** The thermal test measures performance degradation across different thread counts (2, 4, 6, 8, 10 threads) over a 120-second sustained workload. This shows how thermal throttling affects performance at different core utilization levels.
 
 Each thread runs a CPU-intensive integer workload (500,000 operations per iteration). Performance is measured as time per operation in ms. Degradation is calculated as the percentage difference between early (0-40s) and late (80-120s) phases.
+
+</div>
 
 ### Thermal Throttling Results
 
