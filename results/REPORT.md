@@ -371,7 +371,7 @@ Understanding the parameter scale of current state-of-the-art (SOTA) AI models i
 | **Claude (Anthropic)** | Opus 4.6 | ~400B+ | Verified |
 | **MiniMax** | M2.7 | ~230 Billion | Verified |
 | **Gemini (Google)** | 2.5 Pro | ~1.2 Trillion | Proprietary *Estimated |
-| **Claude (Anthropic)** | Opus 4.7 | ~4 Trillion | Proprietary *Estimated |
+| **Claude (Anthropic)** | Opus 4.7 | ~5 Trillion | Proprietary *Estimated |
 | **GPT (OpenAI)** | GPT-5.5 | ~9 Trillion | Proprietary *Estimated |
 
 **Note:** Parameter counts are either verified (from public sources) or estimated (industry projections, proprietary). Estimated values show ranges where available. Cloud providers keep exact figures proprietary. Models marked as Verified have published parameter counts. Models marked as Estimated have industry estimates based on training compute and architectural analysis.
@@ -386,7 +386,8 @@ Understanding the parameter scale of current state-of-the-art (SOTA) AI models i
 | Medium local (Qwen3 4B-8B) | 4-8B | Simple reasoning | ⚠️ Bearable |
 | Large local (Qwen3 14B-30B) | 14-30B | Limited reasoning | ❌ Not viable |
 | SOTA cloud (Claude Opus 4.6, GPT-5.4) | 400B-1T+ | Full reasoning, planning | API required |
-| **Gap** | **~10-50x** | **Massive capability difference** | |
+
+`Note: Performance Gap :**~10-50x** capability difference between SOTA api vs local llm`
 
 ### Why Local Opensourced Models Cannot Compete and Why Macbook Air with API SOTA models is the right way forward
 
