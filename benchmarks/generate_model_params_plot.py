@@ -19,11 +19,12 @@ models = [
     ("Qwen3 30B", 30, "Local"),
     # SOTA Cloud models (corrected May 2026)
     ("Claude 4.6 Opus", 400, "SOTA"),
+    ("Claude 4.7 Opus", 5000, "SOTA"),
     ("GLM-5744", 744, "SOTA"),
     ("MiniMax M2.7", 230, "SOTA"),
-    ("GPT-5.4", 1000, "SOTA"),
-    ("Gemini 2.5 Ultra", 1000, "SOTA"),
-    ("Kimi K2.6", 1000, "SOTA"),
+    ("GPT-5.5", 9000, "SOTA"),
+    ("Gemini 2.5 Pro", 1200, "SOTA"),
+    ("Kimi K2.6", 2600, "SOTA"),
 ]
 
 names = [m[0] for m in models]
@@ -59,7 +60,7 @@ ax.legend(handles=legend_elements, loc='lower right', fontsize=10)
 ax.grid(True, alpha=0.3, axis='x')
 
 plt.tight_layout()
-output_path = '/Users/airnold/Developer/Stress_Test/ai_device_benchmark/results/plots/model_params_comparison.png'
+output_path = '/Users/airnold/Developer/Stress_Test/results/plots/model_params_comparison.png'
 plt.savefig(output_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {output_path}")
 
