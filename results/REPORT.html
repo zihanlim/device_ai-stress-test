@@ -1,20 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MacBook Air M5 16GB - AI Engineering Device Assessment</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
-        table { border-collapse: collapse; width: 100%; margin: 16px 0; }
-        th, td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
-        th { background: #f5f5f5; }
-        img { max-width: 100%; height: auto; }
-        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; }
-        pre { background: #f4f4f4; padding: 16px; overflow-x: auto; }
-        blockquote { border-left: 4px solid #ddd; margin: 16px 0; padding-left: 16px; color: #666; }
-        h1, h2, h3 { border-bottom: 1px solid #eee; padding-bottom: 8px; }
-        hr { border: none; border-top: 1px solid #eee; margin: 24px 0; }
-        .info-box { border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0; background: #f9f9f9; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 24px 20px; 
+            line-height: 1.65;
+            color: #333;
+        }
+        h1, h2, h3 { color: #1a1a1a; border-bottom: 1px solid #e5e5e5; padding-bottom: 8px; margin-top: 32px; }
+        h1 { border-bottom-width: 2px; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; font-size: 14px; }
+        th, td { border: 1px solid #ccc; padding: 10px 14px; text-align: left; }
+        th { background: #f8f8f8; font-weight: 600; }
+        tr:nth-child(even) { background: #fafafa; }
+        img { max-width: 100%; height: auto; border-radius: 6px; margin: 16px 0; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; }
+        pre { background: #f4f4f4; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; }
+        blockquote { border-left: 4px solid #ddd; margin: 16px 0; padding: 8px 16px; color: #555; background: #f9f9f9; }
+        hr { border: none; border-top: 1px solid #eee; margin: 32px 0; }
+        ul, ol { padding-left: 24px; }
+        li { margin: 8px 0; }
+        .tldr-box { 
+            border: 2px solid #000; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin: 24px 0; 
+            background: #fff;
+        }
     </style>
 </head>
 <body>
@@ -23,7 +42,7 @@
 <strong>Chip:</strong> Apple M5 (10-core CPU, 10-core GPU, 38 TOPS Neural Engine)
 <strong>Test Date:</strong> 2026-05-04
 <strong>Tester:</strong> Lim Zi Han</p>
-<hr />
+<hr>
 <div style="border: 2px solid black; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
 ## TL;DR — MacBook Air M5 (16GB) Results
@@ -65,7 +84,7 @@
 
 </div>
 
-<hr />
+<hr>
 <h2>Executive Summary</h2>
 <p>The MacBook Air M5 with 16GB is a sufficient choice for <strong>API-centric AI engineering workflows</strong> but has clear limitations for <strong>local LLM deployment</strong> and <strong>containerized workloads</strong>. This assessment is based on running real benchmark data across CPU, memory, thermal, daily usage simulation, local LLM inference (Qwen3 family via Ollama — chosen due to opensourced avaliability of different model sizes), and Geekbench AI scores (CPU, GPU, Neural Engine).</p>
 <table>
@@ -110,7 +129,7 @@
 </tbody>
 </table>
 <p><strong>Procurement Recommendation:</strong> MacBook Air M5 16GB is optimal for API-based AI engineering. Teams requiring regular local 7B+ model usage should specify MacBook Pro 32GB minimum.</p>
-<hr />
+<hr>
 <h2>Macbook Air M5 16GB Hardware Specifications</h2>
 <table>
 <thead>
@@ -158,10 +177,10 @@
 </tr>
 </tbody>
 </table>
-<hr />
+<hr>
 <h2>1. CPU Performance</h2>
 <h3>Benchmark Results</h3>
-<p><img alt="CPU Benchmark" src="plots/cpu_benchmark.png" /></p>
+<p><img alt="CPU Benchmark" src="plots/cpu_benchmark.png"></p>
 <table>
 <thead>
 <tr>
@@ -200,7 +219,7 @@
 </div>
 
 <h3>Multi-Core Scaling Analysis</h3>
-<p><img alt="CPU Scaling" src="plots/cpu_scaling.png" /></p>
+<p><img alt="CPU Scaling" src="plots/cpu_scaling.png"></p>
 <table>
 <thead>
 <tr>
@@ -259,8 +278,8 @@
 - Peak speedup of 4.58x on 10 cores (vs theoretical 10x) indicates thermal limits
 - The fanless design cannot sustain all 10 cores at full speed simultaneously</p>
 <h2>2. Thermal and Performance Degradation</h2>
-<p><img alt="Thermal Benchmark" src="plots/thermal_benchmark.png" />
-<img alt="Thermal Benchmark Times" src="plots/thermal_benchmark_times.png" /></p>
+<p><img alt="Thermal Benchmark" src="plots/thermal_benchmark.png">
+<img alt="Thermal Benchmark Times" src="plots/thermal_benchmark_times.png"></p>
 <h3>Test Design</h3>
 <p>The thermal test measures performance degradation across different thread counts (2, 4, 6, 8, 10 threads) over a 120-second sustained workload. This shows how thermal throttling affects performance at different core utilization levels.</p>
 <p>Each thread runs a CPU-intensive integer workload (500,000 operations per iteration). Performance is measured as time per operation in ms. Degradation is calculated as the percentage difference between early (0-40s) and late (80-120s) phases.</p>
@@ -333,10 +352,10 @@
 - Extended multi-threaded work (video encoding, ML training) will throttle under sustained load, but ERP use cases not affected as we do not train ML models in daily operations.
 - Local LLM inference (typically uses 1-4 threads) is unaffected by thermal concerns we observe that in higher threads
 - For training workloads, a MacBook Pro with active cooling is preferable</p>
-<hr />
+<hr>
 <h2>3. Memory Performance</h2>
 <h3>Benchmark Results</h3>
-<p><img alt="Memory Benchmark" src="plots/memory_pressure_benchmark.png" /></p>
+<p><img alt="Memory Benchmark" src="plots/memory_pressure_benchmark.png"></p>
 <table>
 <thead>
 <tr>
@@ -376,9 +395,9 @@
 <p><strong>Implication for AI Engineering:</strong>
 - Large model loading benefits from sequential bandwidth
 - Transformer attention patterns (non-contiguous) may not achieve peak LLM inference speeds</p>
-<hr />
+<hr>
 <h2>4. Memory Pressure Scenarios</h2>
-<p><img alt="Memory Pressure" src="plots/memory_pressure_scenarios.png" /></p>
+<p><img alt="Memory Pressure" src="plots/memory_pressure_scenarios.png"></p>
 <h3>Why Test Memory Pressure?</h3>
 <p>AI engineering workflows often run multiple applications simultaneously. This test answers: "If I have X apps running, can I still fit a local LLM?" The scenarios simulate real workflows from light coding to heavy local model usage.</p>
 <p><strong>Note:</strong> Memory was simulated using numpy array allocations with estimated app sizes, not actual running applications. This tests memory pressure behavior, not real-world app memory usage.</p>
@@ -441,9 +460,9 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - Running an 8B model uses ~10GB, leaving only 6GB for OS + apps
 - IDE + browser alongside 8B model is possible but tight
 - 14B+ models cannot run - procurement must specify 32GB+ for those use cases</p>
-<hr />
+<hr>
 <h2>5. Daily Usage Workflow Simulation</h2>
-<p><img alt="Daily Usage" src="plots/daily_usage_benchmark.png" /></p>
+<p><img alt="Daily Usage" src="plots/daily_usage_benchmark.png"></p>
 <table>
 <thead>
 <tr>
@@ -504,9 +523,9 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - Daily development workflows run smoothly
 - Memory headroom after IDE + browser is ~4-5GB for local AI
 - Close unused apps before running local models for best results</p>
-<hr />
+<hr>
 <h2>6. Local LLM Performance (Qwen3 Family via Ollama)</h2>
-<p><img alt="LLM Benchmark" src="plots/llm_benchmark.png" /></p>
+<p><img alt="LLM Benchmark" src="plots/llm_benchmark.png"></p>
 <h3>Test Results</h3>
 <table>
 <thead>
@@ -690,7 +709,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - <strong>8B is usable</strong> at 19 TPS but slower than 4B
 - <strong>14B marginal</strong> - 80% success rate not reliable for production
 - <strong>14B+ not viable</strong> on 16GB - procurement must specify 32GB+ for those workloads</p>
-<hr />
+<hr>
 <h2>7. The Scale Reality: SOTA Models vs Local Inference (and why we use API models)</h2>
 <h3>Why This Assessment Matters for our daily workflow</h3>
 <p>Understanding the parameter scale of current state-of-the-art (SOTA) AI models is essential for realistic procurement expectations. Local inference on consumer hardware cannot compete with API-based AI in terms of model capability.</p>
@@ -750,7 +769,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tbody>
 </table>
 <p><strong>Note:</strong> Parameter counts are either verified (from public sources) or estimated (industry projections, proprietary). Estimated values show ranges where available. Cloud providers keep exact figures proprietary. Models marked as Verified have published parameter counts. Models marked as Estimated have industry estimates based on training compute and architectural analysis.</p>
-<p><img alt="Model Parameters" src="plots/model_params_comparison.png" /></p>
+<p><img alt="Model Parameters" src="plots/model_params_comparison.png"></p>
 <h3>The Capability Gap</h3>
 <table>
 <thead>
@@ -820,7 +839,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - <strong>Air-gapped environments</strong> — security policies that prohibit external API calls
 - <strong>Cost management</strong> — heavy repeated use where API costs accumulate</p>
 <p><strong>Key finding:</strong> Even the slowest SOTA API model (Gemini 3.1 Pro at 70 TPS) is <strong>3-4x faster</strong> than the fastest local model on MacBook Air M5 (0.6B at 164 tok/s, but limited capability). When capability matters, API is not just better - it's categorically different. Local models should be viewed as a <strong>fallback tool</strong>, not a primary AI work tool.</p>
-<hr />
+<hr>
 <h2>8. Geekbench AI Performance (Core ML)</h2>
 <h3>Summary Scores</h3>
 <table>
@@ -853,7 +872,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tr>
 </tbody>
 </table>
-<p><img alt="Geekbench AI" src="plots/geekbench_ai_benchmark.png" /></p>
+<p><img alt="Geekbench AI" src="plots/geekbench_ai_benchmark.png"></p>
 <p><strong>Geekbench URLs:</strong>
 - CPU: https://browser.geekbench.com/ai/v1/494442
 - GPU: https://browser.geekbench.com/ai/v1/494444
@@ -865,7 +884,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </div>
 
 <h3>Detailed Workload Breakdown</h3>
-<p><img alt="Geekbench Workloads" src="plots/geekbench_ai_workloads.png" /></p>
+<p><img alt="Geekbench Workloads" src="plots/geekbench_ai_workloads.png"></p>
 <table>
 <thead>
 <tr>
@@ -942,7 +961,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tr>
 </tbody>
 </table>
-<p><img alt="LLM Proxy" src="plots/geekbench_ai_llm_proxy.png" /></p>
+<p><img alt="LLM Proxy" src="plots/geekbench_ai_llm_proxy.png"></p>
 <h3>Analysis</h3>
 <p><strong>Strengths:</strong>
 - <strong>GPU leads overall AI Score</strong> (11,637) - best for mixed workloads
@@ -958,7 +977,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - <strong>Future potential:</strong> Neural Engine is ready but underutilized - frameworks adding NPU support will unlock significant efficiency gains
 - <strong>For Core ML development:</strong> M5 Air is excellent - NPU/GPU both available and powerful
 - <strong>For local LLM:</strong> Current tools only leverage GPU, but hardware is future-proofed for NPU support</p>
-<hr />
+<hr>
 <h2>9. Docker and Containerization Considerations ()</h2>
 <h3>ERP Need for Docker for AI Engineering on MacBook Air M5?</h3>
 <p>Probably not for API-based AI work and not for most of ERP use-cases.</p>
@@ -1017,7 +1036,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - This would consume half your available memory
 - Combined with IDE + browser, you'd have almost no headroom</p>
 <p><strong>Bottom line:</strong> ERP is primarily doing API-based AI work (Claude, ONA, AWB, Coding Plans) with occasional local small model testing. ERP Team would only need it if ERP has specific containerized workflow requirements.</p>
-<hr />
+<hr>
 <h2>10. Final Workflow Suitability Assessment</h2>
 <h3>✅ API-Based AI Engineering (Claude API, Coding Plans)</h3>
 <table>
@@ -1151,7 +1170,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tbody>
 </table>
 <p><strong>Verdict:</strong> 16GB cannot handle containerized workloads - MacBook Pro 32GB+ required.</p>
-<hr />
+<hr>
 <h2>Procurement Recommendations</h2>
 <h3>Unified Recommendations</h3>
 <table>
@@ -1200,7 +1219,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tr>
 </tbody>
 </table>
-<hr />
+<hr>
 <h2>Financial Considerations</h2>
 <table>
 <thead>
@@ -1234,7 +1253,7 @@ Medium represents a different workflow: you're at your desk with a clean system 
 </tbody>
 </table>
 <p><strong>Recommendation:</strong> If budget allows, MacBook Pro 24GB provides meaningful improvement in memory headroom. 36GB should ERP use Macbook for training Machine Learning, Deep Learning and Reinforcement Learning models. Macbook Air 16GB is still sufficient for API-centric workflows.</p>
-<hr />
+<hr>
 <h2>11. Conclusion</h2>
 <p>The MacBook Air M5 16GB is a <strong>sufficient device for API-based AI engineering</strong> and a <strong>good device for local small model development</strong>. Its limitations are clear but acceptable for its intended use case, and in most ERP use cases sufficient.</p>
 <p><strong>Key Strengths:</strong>
@@ -1248,11 +1267,11 @@ Medium represents a different workflow: you're at your desk with a clean system 
 - Neural Engine underutilized by current LLM frameworks
 - 4B-8B models are usable but not enjoyable (slow TPS)</p>
 <p><strong>Final Verdict:</strong> MacBook Air M5 16GB is the <strong>right choice</strong> for AI engineers primarily using API-based AI (Claude, Coding Plans). Teams requiring regular local 7B+ model usage should budget for MacBook Pro 32GB.</p>
-<hr />
+<hr>
 <p><em>Report generated from real benchmark tests - 2026-05-04</em>
 <em>Framework: AI Engineering Device Benchmark Suite v1.0</em>
 <em>All data available in: /ai_device_benchmark/results/</em>
 <em>Geekbench results: CPU (494442), GPU (494444), Neural (494446)</em></p>
-<hr />
+<hr>
 </body>
 </html>

@@ -8,20 +8,20 @@ A portable benchmark suite for assessing hardware suitability for AI engineering
 
 ## TL;DR — MacBook Air M5 (16GB) Results
 
-**Primary Use Case: API-Based AI Engineering (Claude, Coding Plans)**
+**Primary Use Case: API-Based AI Engineering (Claude,ONA,AWB Coding Plans)**
 
 ### Most Important Considerations for API AI Workflows
 
-| Priority | Factor | Your Result | Verdict |
+| Priority | Factor | Result | Verdict |
 |----------|--------|-------------|---------|
-| **1st** | **Memory headroom** | 16GB, zero swap under load | ✅ Comfortable — can run IDE + Browser + Slack without pressure |
+| **1st** | **Memory headroom** | 16GB, zero swap under load | ✅ Comfortable — Tested, can run IDE + Browser + Slack without pressure |
 | **2nd** | **Storage speed** | 14 GB/s read | ✅ Excellent — fast project file loading |
 | **3rd** | **CPU single-core** | Fibonacci 1M: 8.9s | ✅ Responsive — quick compiles, snappy UI |
 
 **What doesn't matter for API coding:**
-- LLM TPS (cloud APIs, not local inference)
+- LLM TPS (cloud APIs inference happens in servers, not local inference)
 - GPU/Neural Engine scores
-- Thermal throttling (you're mostly waiting on network, not sustained compute)
+- Thermal throttling (you're mostly waiting on network, not sustained compute as inference doesnt happen locally)
 
 ### Full Benchmark Summary
 
@@ -32,16 +32,16 @@ A portable benchmark suite for assessing hardware suitability for AI engineering
 | **Neural Engine** | 4,138 | Excels at quantized/int8 tasks |
 | **Storage** | 14 GB/s read, 6.9 GB/s write | Excellent |
 | **Memory** | 14.5 GB/s bandwidth, zero swap | Great |
-| **CPU** | 3.34x/10 cores, ~1.7 TFLOPS | Good |
-| **Thermal** | 51% throttling after 30s | ❌ Irrelevant for API work |
+| **CPU** | 4.58x/10 cores, 46% efficiency, ~1.7 TFLOPS | Good |
+| **Thermal** | ≤6% max degradation (fanless, moderate throttling) | Good for sustained workloads |
 
 ### Bottom Line
 
-**For API-based AI coding plans:** Your M5 Air is excellent. Memory headroom, storage speed, and CPU single-core performance are all good. Thermal throttling doesn't matter — you're waiting on network/API responses, not doing sustained compute.
+**For API-based AI coding plans:** The M5 Air is sufficient. Memory headroom, storage speed, and CPU single-core performance are all good. Our daily workflow uses SOTA API models (Claude Sonnet 4.6 at ~110 TPS, Opus 4.7 at ~81 TPS), and are categorically faster than any local model.
 
-**For local LLM:** Stick to **qwen3:0.6b** (164 tok/s, 1GB) or **qwen3:1.7b** (65 tok/s, 2GB). Anything larger hits thermal/memory limits.
+**For local LLM:** Stick to **qwen3:0.6b** (164 tok/s, 1GB) or **qwen3:1.7b** (65 tok/s, 2GB). The 4B model at 38 tok/s is usable but slower than 1.7B. The 8B model at 19 tok/s is slow and barefly usable. Anything larger models with more parameters hits memory limits.
 
-**Memory constraint:** If you also run Docker, 16GB is tight — 32GB+ Pro recommended.
+**Memory constraint:** If you also run Docker, 16GB is tight — more RAM, 32GB+ Pro recommended. Docker Desktop alone consumes 8-12GB, leaving only 4-8GB for IDE + browser + system. A loaded IDE (VS Code + extensions + iOS simulator) can use 4-6GB, and an 8B model needs ~5GB, leaving almost no headroom. For Docker + local models, 32GB minimum. But from observation of ERP use cases, since the team do not run docker locally and ERP do not run local models, MacBook Air 16GB is sufficient.
 
 </div>
 
@@ -50,8 +50,6 @@ A portable benchmark suite for assessing hardware suitability for AI engineering
 ## Quick Start
 
 ```bash
-cd ai_device_benchmark
-
 # Run all benchmarks (foreground - shows output, ~25 min)
 ./run_all_benchmarks.sh results/ "MacBook-Air-M5" "Engineering-Dept"
 
