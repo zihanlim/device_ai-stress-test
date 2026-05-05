@@ -14,7 +14,7 @@
 
 ### Most Important Considerations for API AI Workflows
 
-| Priority | Factor | Your Result | Verdict |
+| Priority | Factor | Result | Verdict |
 |----------|--------|-------------|---------|
 | **1st** | **Memory headroom** | 16GB, zero swap under load | ✅ Comfortable — Tested, can run IDE + Browser + Slack without pressure |
 | **2nd** | **Storage speed** | 14 GB/s read | ✅ Excellent — fast project file loading |
@@ -23,7 +23,7 @@
 **What doesn't matter for API coding:**
 - LLM TPS (cloud APIs inference happens in servers, not local inference)
 - GPU/Neural Engine scores
-- Thermal throttling (you're mostly waiting on network, not sustained compute as inference doesnt happen locally)
+- Thermal throttling (mostly waiting on network, not sustained compute as inference doesnt happen locally)
 
 ### Full Benchmark Summary
 
@@ -43,7 +43,7 @@
 
 **For local LLM:** Stick to **qwen3:0.6b** (164 tok/s, 1GB) or **qwen3:1.7b** (65 tok/s, 2GB). The 4B model at 38 tok/s is usable but slower than 1.7B. The 8B model at 19 tok/s is slow and barefly usable. Anything larger models with more parameters hits memory limits.
 
-**Memory constraint:** If you also run Docker, 16GB is tight — more RAM, 32GB+ Pro recommended. Docker Desktop alone consumes 8-12GB, leaving only 4-8GB for IDE + browser + system. A loaded IDE (VS Code + extensions + iOS simulator) can use 4-6GB, and an 8B model needs ~5GB, leaving almost no headroom. For Docker + local models, 32GB minimum. But from observation of ERP use cases, since the team do not run docker locally and ERP do not run local models, MacBook Air 16GB is sufficient.
+**Memory constraint:** If ERP also run Docker, 16GB is tight — more RAM, 32GB+ Pro recommended. Docker Desktop alone consumes 8-12GB, leaving only 4-8GB for IDE + browser + system. A loaded IDE (VS Code + extensions + iOS simulator) can use 4-6GB, and an 8B model needs ~5GB, leaving almost no headroom. For Docker + local models, 32GB minimum. But from observation of ERP use cases, since the team do not run docker locally and ERP do not run local models, MacBook Air 16GB is sufficient.
 
 </div>
 
@@ -225,9 +225,6 @@ AI engineering workflows often run multiple applications simultaneously. This te
 | **Light** | Typical daily work | Baseline (2GB) + Chrome 10 tabs (800MB) + VS Code (500MB) + Terminal (100MB) + Slack (100MB) | 3,548 MB | 0 MB | Comfortable |
 | **Medium (local llm)** | Clean system + background LLM | Baseline (2GB) + 7B quantized model (4GB) — apps closed to make room | 6,144 MB | 0 MB | Tight |
 | **Heavy** | Stress test | Direct memory allocation (80% of 16GB) | 8,192 MB | 0 MB | Safe limit |
-
-**Why Medium baseline (2GB) < Light total (3.5GB)?**
-Medium represents a different workflow: you're at your desk with a clean system (just OS baseline), and you want to run a local LLM. The extra apps (Browser, IDE, etc.) are **closed** to make room for the model. Light represents having all those apps open simultaneously with no LLM. They're two different scenarios, not cumulative.
 
 <div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
@@ -505,10 +502,10 @@ We likely don't need Docker at all because:
 
 ### Memory Impact
 
-If you do install Docker:
+If ERP install Docker:
 - Docker Desktop recommends 4GB+ minimum, often uses 8-12GB
-- This would consume half your available memory
-- Combined with IDE + browser, you'd have almost no headroom
+- This would consume half the available memory
+- Combined with IDE + browser, Macbook Air 16GB will have almost no headroom
 
 **Bottom line:** ERP is primarily doing API-based AI work (Claude, ONA, AWB, Coding Plans) with occasional local small model testing. ERP Team would only need it if ERP has specific containerized workflow requirements.
 
