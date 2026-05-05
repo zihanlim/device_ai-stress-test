@@ -367,7 +367,7 @@ Understanding the parameter scale of current state-of-the-art (SOTA) AI models i
 | Model Family | Latest Model | Total Parameters | Status |
 |--------------|--------------|------------------|--------|
 | **Kimi (Moonshot)** | Kimi K2.6 | ~1 Trillion (32B active, open-weights) | Verified |
-| **GLM (Zhipu)** | GLM-5 | ~744 Billion | Verified |
+| **GLM (Zhipu)** | GLM-5 Turbo | ~744 Billion | Verified |
 | **Claude (Anthropic)** | Opus 4.6 | ~400B+ | Verified |
 | **MiniMax** | M2.7 | ~230 Billion | Verified |
 | **Gemini (Google)** | 2.5 Pro | ~1.2 Trillion | Proprietary *Estimated |

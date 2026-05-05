@@ -20,7 +20,7 @@ models = [
     # SOTA Cloud models (corrected May 2026)
     ("Claude 4.6 Opus", 400, "SOTA"),
     ("Claude 4.7 Opus", 5000, "SOTA"),
-    ("GLM-5744", 744, "SOTA"),
+    ("GLM-5 Turbo", 744, "SOTA"),
     ("MiniMax M2.7", 230, "SOTA"),
     ("GPT-5.5", 9700, "SOTA"),
     ("Gemini 2.5 Pro", 1200, "SOTA"),
@@ -37,10 +37,9 @@ colors = ['#3498db' if cat == "Local" else '#e74c3c' for cat in categories]
 fig, ax = plt.subplots(figsize=(12, 10))
 fig.patch.set_facecolor('white')
 
-# Plot on log scale
-ax.set_xscale('log')
+# Plot on linear scale
 bars = ax.barh(names, params, color=colors, edgecolor='black')
-ax.set_xlabel('Parameters (Billions, log scale)', fontsize=12)
+ax.set_xlabel('Parameters (Billions)', fontsize=12)
 ax.set_title('AI Model Parameter Scale: Local vs SOTA Cloud (May 2026)', fontsize=14, fontweight='bold')
 ax.axvline(x=16, color='green', linestyle='--', linewidth=2, label='MacBook Air M5 Memory Limit')
 ax.axvline(x=30, color='blue', linestyle=':', linewidth=2, label='Largest Local Model Tested (30B)')
