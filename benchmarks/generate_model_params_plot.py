@@ -22,9 +22,9 @@ models = [
     ("Claude 4.7 Opus", 5000, "SOTA"),
     ("GLM-5744", 744, "SOTA"),
     ("MiniMax M2.7", 230, "SOTA"),
-    ("GPT-5.5", 9000, "SOTA"),
+    ("GPT-5.5", 9700, "SOTA"),
     ("Gemini 2.5 Pro", 1200, "SOTA"),
-    ("Kimi K2.6", 2600, "SOTA"),
+    ("Kimi K2.6", 1000, "SOTA"),
 ]
 
 names = [m[0] for m in models]

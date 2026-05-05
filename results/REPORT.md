@@ -366,13 +366,13 @@ Understanding the parameter scale of current state-of-the-art (SOTA) AI models i
 
 | Model Family | Latest Model | Total Parameters | Status |
 |--------------|--------------|------------------|--------|
-| **Kimi (Moonshot)** | Kimi K2.6 | ~1 Trillion | Verified |
+| **Kimi (Moonshot)** | Kimi K2.6 | ~1 Trillion (32B active, open-weights) | Verified |
 | **GLM (Zhipu)** | GLM-5 | ~744 Billion | Verified |
 | **Claude (Anthropic)** | Opus 4.6 | ~400B+ | Verified |
 | **MiniMax** | M2.7 | ~230 Billion | Verified |
 | **Gemini (Google)** | 2.5 Pro | ~1.2 Trillion | Proprietary *Estimated |
-| **Claude (Anthropic)** | Opus 4.7 | ~5 Trillion | Proprietary *Estimated |
-| **GPT (OpenAI)** | GPT-5.5 | ~9 Trillion | Proprietary *Estimated |
+| **Claude (Anthropic)** | Opus 4.7 | ~4-5 Trillion | Proprietary *Estimated |
+| **GPT (OpenAI)** | GPT-5.5 | ~9.7 Trillion | Proprietary *Estimated |
 
 **Note:** Parameter counts are either verified (from public sources) or estimated (industry projections, proprietary). Estimated values show ranges where available. Cloud providers keep exact figures proprietary. Models marked as Verified have published parameter counts. Models marked as Estimated have industry estimates based on training compute and architectural analysis.
 
