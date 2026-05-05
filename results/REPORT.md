@@ -2,8 +2,7 @@
 
 **Device:** MacBook Air M5 (16GB)
 **Chip:** Apple M5 (10-core CPU, 10-core GPU, 38 TOPS Neural Engine)
-**Test Date:** 2026-05-04
-**Tester:** Lim Zi Han
+**Test Date:** 2026-05-05
 
 ---
 
@@ -606,7 +605,7 @@ The MacBook Air M5 16GB is a **sufficient device for API-based AI engineering** 
 - Neural Engine underutilized by current LLM frameworks
 - 4B-8B models are usable but not enjoyable (slow TPS)
 
-**Final Verdict:** MacBook Air M5 16GB is the **right choice** for AI engineers primarily using API-based AI (Claude, Coding Plans).
+**Final Verdict:** MacBook Air M5 16GB is the **sufficient** for AI engineers primarily using API-based AI (Claude, Coding Plans).
 
 ---
 
