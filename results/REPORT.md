@@ -523,7 +523,6 @@ If you do install Docker:
 |-------------|--------|-------|
 | Memory (16GB) | ✅ Sufficient for API-Based AI use | 11GB available after OS |
 | CPU Performance | ✅ Excellent | 8.92s Fibonacci, fast compilation |
-| Quiet Operation | ✅  | Fanless, no noise |
 | Network Speed | ✅ Good | Wi-Fi 6, ethernet available |
 | Thermal Management | ✅ No concern on API-based workflows | Passive cooling handles API workloads |
 
@@ -535,7 +534,6 @@ If you do install Docker:
 |-------------|--------|-------|
 | Memory (1-2GB) | ✅ Comfortable | Leaves 14GB for OS + apps |
 | Responsiveness (30+ TPS) | ✅ Excellent | 65-164 TPS |
-| Battery Life | ✅ Good | Efficient cores handle light loads |
 | Offline Capability | ✅ Available | Models run fully offline |
 
 **Verdict:** Excellent for local code completion and prototyping.
