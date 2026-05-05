@@ -267,7 +267,7 @@ AI engineering workflows often run multiple applications simultaneously. This te
 
 <div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
-**Test Design:** Application launch times are measured using Python's `time.process_time()` for wall-clock latency. Cold start launches apps from scratch after a 30-second background period. Hot start launches immediately after cold start (app still in memory). Browsing opens 10 Chrome tabs to common sites (Google, GitHub, Stack Overflow). IDE workspace measures VS Code launching with workspace index. Memory delta uses `resource.getrusage()` before/after each scenario.
+**Daily Usage Test Design:** Application launch times are measured using Python's `time.process_time()` for wall-clock latency. Cold start launches apps from scratch after a 30-second background period. Hot start launches immediately after cold start (app still in memory). Browsing opens 10 Chrome tabs to common sites (Google, GitHub, Stack Overflow). IDE workspace measures VS Code launching with workspace index. Memory delta uses `resource.getrusage()` before/after each scenario.
 
 </div>
 
@@ -316,7 +316,7 @@ AI engineering workflows often run multiple applications simultaneously. This te
 
 <div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
-**Test Design:** Each model (0.6B, 1.7B, 4B, 8B, 14B, 30B) was tested with 5 prompts of varying complexity (simple Q&A, code generation, explanation, email writing). Ollama default quantization (Q4_K_M) was used for all models. Metrics collected: total tokens generated, wall-clock latency per prompt, and tokens-per-second throughput. Success is defined as completing the full response without OOM. Memory usage is measured via Ollama's API (model info).
+**Memory Efficiency Test Design:** Each model (0.6B, 1.7B, 4B, 8B, 14B, 30B) was tested with 5 prompts of varying complexity (simple Q&A, code generation, explanation, email writing). Ollama default quantization (Q4_K_M) was used for all models. Metrics collected: total tokens generated, wall-clock latency per prompt, and tokens-per-second throughput. Success is defined as completing the full response without OOM. Memory usage is measured via Ollama's API (model info).
 
 </div>
 
@@ -432,7 +432,7 @@ The parameter scale comparison reveals that **local inference is not about compe
 
 <div style="border: 1px solid grey; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
-**Test Design:** Geekbench AI runs standardized Core ML workloads across CPU, GPU, and Neural Engine independently. Tests include: Pose Estimation, Style Transfer, Image Segmentation, Object Detection, Face Detection, Depth Estimation, Super Resolution, Text Classification, and Machine Translation. Each workload reports Single Precision (FP32) and Half Precision (FP16) scores. AI Score is a weighted composite. Tests are run via the Geekbench AI app (version 6) in standalone mode.
+**GeekBench AI Test Design:** Geekbench AI runs standardized Core ML workloads across CPU, GPU, and Neural Engine independently. Tests include: Pose Estimation, Style Transfer, Image Segmentation, Object Detection, Face Detection, Depth Estimation, Super Resolution, Text Classification, and Machine Translation. Each workload reports Single Precision (FP32) and Half Precision (FP16) scores. AI Score is a weighted composite. Tests are run via the Geekbench AI app (version 6) in standalone mode.
 
 </div>
 
