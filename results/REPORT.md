@@ -389,7 +389,7 @@ Understanding the parameter scale of current state-of-the-art (SOTA) AI models i
 
 ### Why Local Opensourced Models Cannot Compete and Why Macbook Air with API SOTA models is the right way forward
 
-1. **Parameter count gap:** The smallest SOTA model (Kimi K2.6 at 2.6T params) is **1,000x larger** than Qwen3 0.6B (0.6B params)
+1. **Parameter count gap:** The smallest SOTA model (Kimi K2.6 at 1T params) is **1,000x larger** than Qwen3 0.6B (0.6B params)
 
 2. **Reasoning capability:** Local 8B models fail at complex multi-step reasoning that Claude Opus handles easily. Local 14B+ models are not smart enough and unreliable at best. Multi-turn workflows still requires SOTA models for best performance.
 
