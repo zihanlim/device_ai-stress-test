@@ -40,11 +40,11 @@
 
 ### Bottom Line
 
-**For API-based AI coding plans:** The Neo with <span style="color:red">A18 Pro 8GB is **functional but constrained**.</span> CPU single-core and storage are strong, but 8GB RAM is the dominant limiting factor — running IDE + browser + Slack alongside any local model is unrealistic. Our daily workflow uses SOTA API models (Claude Sonnet 4.6 at ~110 TPS, Opus 4.7 at ~81 TPS), which are categorically faster than any local model on this device.
+**For API-based AI coding plans:** The Neo with <span style="color:red">A18 Pro 8GB is functional but constrained</span>.  CPU single-core and storage are strong, but 8GB RAM is the dominant limiting factor — running IDE + browser + Slack alongside any local model is unrealistic. Our daily workflow uses SOTA API models (Claude Sonnet 4.6 at ~110 TPS, Opus 4.7 at ~81 TPS), which are categorically faster than any local model on this device.
 
 **For local LLM:** Stick to **qwen3:0.6b** (60 tok/s, 1GB) or **qwen3:1.7b** (28 tok/s, 2GB). The 4B model at 13 tok/s is barely usable and slow with occasional failures (4/5 success). The 8B model at 7 tok/s with only 2/5 success is essentially unusable due to severe memory pressure. **14B and 30B were not attempted** as they will definitely encounter OOM — both require more memory than this device has (16GB and 32GB respectively).
 
-**Memory constraint:** <span style="color:red">8GB is the real bottleneck</span>. Docker Desktop alone consumes 4-6GB on minimum config, leaving virtually no headroom for IDE/browser. A loaded VS Code workspace can use 2-4GB on its own. If ERP also runs Docker or local models beyond 1.7B, **8GB is insufficient for heavy multi-tasking daily operations — 16GB+ required as a comfortable baseline**. From observation of ERP use cases, since the team does not run Docker locally and does not run local models beyond small ones, the MacBook Neo 8GB is borderline-sufficient for pure API workflows but offers **no headroom**. <span style="color:red">For any team member who occasionally needs local 4B+ inference or containers, **MacBook Air M5 16GB or higher is the safer floor**.</span>
+**Memory constraint:** <span style="color:red">8GB is the real bottleneck</span>. Docker Desktop alone consumes 4-6GB on minimum config, leaving virtually no headroom for IDE/browser. A loaded VS Code workspace can use 2-4GB on its own. If ERP also runs Docker or local models beyond 1.7B, **8GB is insufficient for heavy multi-tasking daily operations — 16GB+ required as a comfortable baseline**. From observation of ERP use cases, since the team does not run Docker locally and does not run local models beyond small ones, the MacBook Neo 8GB is borderline-sufficient for pure API workflows but offers **no headroom**. <span style="color:red">For any team member who occasionally needs local 4B+ inference or containers, MacBook Air M5 16GB or higher is the safer floor.</span>
 
 </div>
 
@@ -52,7 +52,7 @@
 
 ## Executive Summary
 
-The MacBook Neo with Apple A18 Pro and 8GB unified memory is a <span style="color:red">**borderline-sufficient choice for pure API-centric AI engineering workflows**  and has clear limitations for **local LLM deployment**, **memory-heavy IDE workflows**, and **containerized workloads**.</span> This assessment is based on running real benchmark data across CPU, memory, thermal, daily usage simulation, local LLM inference (Qwen3 family via Ollama — chosen due to open-sourced availability of different model sizes), and Geekbench AI scores (CPU, GPU, Neural Engine).
+The MacBook Neo with Apple A18 Pro and 8GB unified memory is a **borderline-sufficient choice for pure API-centric AI engineering workflows**  and has clear limitations for **local LLM deployment**, **memory-heavy IDE workflows**, and **containerized workloads**. This assessment is based on running real benchmark data across CPU, memory, thermal, daily usage simulation, local LLM inference (Qwen3 family via Ollama — chosen due to open-sourced availability of different model sizes), and Geekbench AI scores (CPU, GPU, Neural Engine).
 
 | Capability | Rating | Verdict |
 |-------------|--------|---------|
