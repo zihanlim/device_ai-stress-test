@@ -32,8 +32,11 @@ This framework provides standardized benchmarks that simulate real AI engineerin
 | Platform | Status |
 |----------|--------|
 | Apple Silicon M-series (M1-M5) | **Fully Tested** |
+| Apple Silicon A18 Pro (Neo/iPhone) | **Tested on MacBook Neo** |
 | Intel Macs | Partial (no ANE/CoreML) |
 | Linux | Partial (some scripts macOS-specific) |
+
+**Note on Apple Silicon:** The A18 Pro chip used in MacBook Neo and iPhone 16 Pro shares the same silicon. MacBook Neo provides better sustained performance due to superior cooling and larger battery compared to iPhone 16 Pro.
 
 ---
 
@@ -172,14 +175,14 @@ pip3 install mlx
 - Efficiency (TPS per GB memory)
 
 **Models Tested (Qwen3 Family):**
-| Model | Size | Memory |
-|-------|------|--------|
-| qwen3:0.6b | 0.6B | ~0.5GB |
-| qwen3:1.7b | 1.7B | ~1.4GB |
-| qwen3:4b | 4B | ~2.5GB |
-| qwen3:8b | 8B | ~5.2GB |
-| qwen3:14b | 14B | ~9.3GB |
-| qwen3:30b | 30B | ~18GB (fails on 16GB) |
+| Model | Size | Memory | MacBook Air M5 (16GB) | MacBook Neo A18Pro (8GB) |
+|-------|------|--------|----------------------|--------------------------|
+| qwen3:0.6b | 0.6B | ~0.5GB | ~164 tok/s ✅ | ~60 tok/s ✅ |
+| qwen3:1.7b | 1.7B | ~1.4GB | ~65 tok/s ✅ | ~28 tok/s ✅ |
+| qwen3:4b | 4B | ~2.5GB | ~38 tok/s ⚠️ | ~13 tok/s ⚠️ |
+| qwen3:8b | 8B | ~5.2GB | ~19 tok/s ⚠️ | ❌ OOM/Fail |
+| qwen3:14b | 14B | ~9.3GB | ~8 tok/s ❌ | ❌ OOM |
+| qwen3:30b | 30B | ~18GB | ❌ OOM | ❌ OOM |
 
 **Requires Ollama:**
 ```bash
@@ -228,6 +231,26 @@ ollama serve
 | Light | ~4GB | Browser (10 tabs) + VSCode + Terminal + Slack |
 | Medium + LLM | ~8GB | Above + 7B Q4 model in background |
 | Heavy | 8GB allocation | Tests swap behavior at memory limit |
+
+### 8b. Real Memory Pressure Benchmark (`benchmarks/memory_pressure_real.py`)
+
+**Tests actual application memory usage** (Chrome, VS Code, Ollama) via `ps` and `vm_stat`, not synthetic allocations.
+
+**Scenarios (11 total):**
+| # | Scenario | Apps Running | Memory Pressure |
+|---|----------|--------------|-----------------|
+| 1 | Idle baseline | Clean system | Low |
+| 2 | Browser only | Chrome 10 tabs | Moderate |
+| 3 | IDE only | VS Code | Low |
+| 4 | Light dev | VS Code + 3 tabs | Moderate |
+| 5 | Daily dev | VS Code + 10 tabs | High |
+| 6 | Daily + Claude Code | + claude CLI | High |
+| 7-10 | Daily + LLM | + qwen3:0.6b to 8B | Severe |
+| 11 | Dual LLMs | + 0.6B + 1.7B | Severe |
+
+**Output:** `memory_pressure_real.csv` + `memory_pressure_real_log.jsonl` + `plots/memory_pressure_real_*.png`
+
+**Key insight:** 8B model (5.1GB) causes Chrome/VS Code eviction. Lower "active memory" in 8B scenario doesn't mean less pressure — it reflects process eviction to prioritize the LLM.
 
 ---
 

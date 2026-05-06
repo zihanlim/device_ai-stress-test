@@ -6,42 +6,31 @@ A portable benchmark suite for assessing hardware suitability for AI engineering
 
 <div style="border: 2px solid black; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
-## TL;DR — MacBook Air M5 (16GB) Results
+## Device Results
 
-**Primary Use Case: API-Based AI Engineering (Claude,ONA,AWB Coding Plans)**
+This repo contains benchmark results for multiple devices. Each device has its own report in `results/[DeviceName]/`.
 
-### Most Important Considerations for API AI Workflows
+| Device | Memory | Verdict |
+|--------|--------|---------|
+| **MacBook Air M5 (16GB)** | 16GB | ✅ Excellent for API workflows, adequate for local 8B |
+| **MacBook Neo A18Pro (8GB)** | 8GB | ⚠️ Borderline for API workflows, limited to 1.7B local |
 
-| Priority | Factor | Result | Verdict |
-|----------|--------|-------------|---------|
-| **1st** | **Memory headroom** | 16GB, zero swap under load | ✅ Comfortable — Tested, can run IDE + Browser + Slack without pressure |
-| **2nd** | **Storage speed** | 14 GB/s read | ✅ Excellent — fast project file loading |
-| **3rd** | **CPU single-core** | Fibonacci 1M: 8.9s | ✅ Responsive — quick compiles, snappy UI |
+For full device-specific reports, see:
+- [MacBook Air M5 Results](results/MacBookAirM5/REPORT.md)
+- [MacBook Neo A18Pro Results](results/MacBookNeo-A18Pro/REPORT.md)
 
-**What doesn't matter for API coding:**
-- LLM TPS (cloud APIs inference happens in servers, not local inference)
-- GPU/Neural Engine scores
-- Thermal throttling (you're mostly waiting on network, not sustained compute as inference doesnt happen locally)
+### Quick Comparison
 
-### Full Benchmark Summary
+| Factor | MacBook Air M5 (16GB) | MacBook Neo A18Pro (8GB) |
+|--------|----------------------|--------------------------|
+| Memory headroom | ✅ Comfortable | ⚠️ Tight |
+| Local LLM | Up to 8B | Up to 1.7B |
+| Docker | ⚠️ Tight (8-12GB) | ❌ Not recommended |
+| CPU single-core | 8.9s (Fibonacci) | 9.95s (Fibonacci) |
+| Storage | 14 GB/s read | 11.4 GB/s read |
+| Thermal | ≤6% throttling | ≤8% throttling |
 
-| Component | Score | Notes |
-|-----------|-------|-------|
-| **GPU AI** | **11,637** | Best for AI workloads |
-| **CPU AI** | 4,298 | 2.7x slower than GPU |
-| **Neural Engine** | 4,138 | Excels at quantized/int8 tasks |
-| **Storage** | 14 GB/s read, 6.9 GB/s write | Excellent |
-| **Memory** | 14.5 GB/s bandwidth, zero swap | Great |
-| **CPU** | 4.58x/10 cores, 46% efficiency, ~1.7 TFLOPS | Good |
-| **Thermal** | ≤6% max degradation (fanless, moderate throttling) | Good for sustained workloads |
-
-### Bottom Line
-
-**For API-based AI coding plans:** The M5 Air is sufficient. Memory headroom, storage speed, and CPU single-core performance are all good. Our daily workflow uses SOTA API models (Claude Sonnet 4.6 at ~110 TPS, Opus 4.7 at ~81 TPS), and are categorically faster than any local model.
-
-**For local LLM:** Stick to **qwen3:0.6b** (164 tok/s, 1GB) or **qwen3:1.7b** (65 tok/s, 2GB). The 4B model at 38 tok/s is usable but slower than 1.7B. The 8B model at 19 tok/s is slow and barefly usable. Anything larger models with more parameters hits memory limits.
-
-**Memory constraint:** If you also run Docker, 16GB is tight — more RAM, 32GB+ Pro recommended. Docker Desktop alone consumes 8-12GB, leaving only 4-8GB for IDE + browser + system. A loaded IDE (VS Code + extensions + iOS simulator) can use 4-6GB, and an 8B model needs ~5GB, leaving almost no headroom. For Docker + local models, 32GB minimum. But from observation of ERP use cases, since the team do not run docker locally and ERP do not run local models, MacBook Air 16GB is sufficient.
+**Key insight:** The Neo A18Pro chip is functionally similar to iPhone 16 Pro (same silicon). Neo wins on sustained workloads due to better cooling and larger battery.
 
 </div>
 
