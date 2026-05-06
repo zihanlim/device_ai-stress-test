@@ -1,0 +1,7 @@
+model_size,model_name,mem_gb,avg_latency_s,avg_tps,total_tokens,successful_prompts
+0.6B,qwen3:0.6b,1,5.5806,163.82,4710,5
+1.7B,qwen3:1.7b,2,14.2926,65.21,4559,5
+4B,qwen3:4b,5,39.2254,38.01,7524,5
+8B,qwen3:8b,10,70.2379,19.43,6207,5
+14B,qwen3:14b,16,99.6628,11.15,4020,4
+30B,qwen3:30b,32,0,0,0,0

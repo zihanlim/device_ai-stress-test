@@ -1,0 +1,81 @@
+=== LLM Benchmark ===
+Ollama version: ollama version is 0.22.0
+
+=== LLM Benchmark (Multi-Model) ===
+
+Ollama version: ollama version is 0.22.0
+Available models: qwen3:30b, qwen3:14b, qwen3:8b, qwen3:4b, qwen3:1.7b, qwen3:0.6b
+
+
+--- Testing qwen3:0.6b (0.6B) ---
+  Benchmarking qwen3:0.6b...
+    Prompt 1: 2.31s, 121.1 tok/s
+    Prompt 2: 12.43s, 169.4 tok/s
+    Prompt 3: 5.88s, 189.4 tok/s
+    Prompt 4: 1.72s, 175.6 tok/s
+    Prompt 5: 5.56s, 163.5 tok/s
+  Avg: 5.58s latency, 163.8 tok/s
+
+--- Testing qwen3:1.7b (1.7B) ---
+  Benchmarking qwen3:1.7b...
+    Prompt 1: 2.76s, 59.3 tok/s
+    Prompt 2: 21.59s, 62.8 tok/s
+    Prompt 3: 17.21s, 75.7 tok/s
+    Prompt 4: 6.26s, 74.4 tok/s
+    Prompt 5: 23.64s, 53.9 tok/s
+  Avg: 14.29s latency, 65.2 tok/s
+
+--- Testing qwen3:4b (4B) ---
+  Benchmarking qwen3:4b...
+    Prompt 1: 13.29s, 23.2 tok/s
+    Prompt 2: 88.45s, 20.6 tok/s
+    Prompt 3: 70.99s, 25.2 tok/s
+    Prompt 4: 945.46s, 0.6 tok/s
+    Prompt 5: 403.97s, 6.9 tok/s
+  Avg: 304.43s latency, 15.3 tok/s
+
+--- Testing qwen3:8b (8B) ---
+  Benchmarking qwen3:8b...
+    Prompt 1: 13.82s, 19.8 tok/s
+    Prompt 2: 92.50s, 17.3 tok/s
+    Prompt 3: 86.03s, 17.9 tok/s
+    Prompt 4: 39.74s, 18.1 tok/s
+    Prompt 5: 137.32s, 14.1 tok/s
+  Avg: 73.88s latency, 17.4 tok/s
+
+--- Testing qwen3:14b (14B) ---
+  Benchmarking qwen3:14b...
+    Prompt 1: 25.50s, 7.3 tok/s
+    Prompt 2: FAILED
+    Prompt 3: FAILED
+    Prompt 4: 59.97s, 8.1 tok/s
+    Prompt 5: FAILED
+  Avg: 42.73s latency, 7.7 tok/s
+
+--- Testing qwen3:30b (30B) ---
+  Benchmarking qwen3:30b...
+    Prompt 1: FAILED
+    Prompt 2: FAILED
+    Prompt 3: FAILED
+    Prompt 4: FAILED
+    Prompt 5: FAILED
+  All prompts failed for qwen3:30b
+
+============================================================
+LLM BENCHMARK SUMMARY
+============================================================
+Size     Model                Memory     Latency    TPS       
+------------------------------------------------------------
+0.6B     qwen3:0.6b           1GB        5.58s      163.8
+1.7B     qwen3:1.7b           2GB        14.29s      65.2
+14B      qwen3:14b            16GB        42.73s      7.7
+4B       qwen3:4b             5GB        304.43s      15.3
+8B       qwen3:8b             10GB        73.88s      17.4
+============================================================
+
+Fastest: qwen3:0.6b at 163.8 tok/s
+
+JSON log: results/llm_log.jsonl
+TXT summary: results/llm_data.txt
+
+LLM Benchmark complete

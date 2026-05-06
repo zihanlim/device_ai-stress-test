@@ -1,0 +1,8 @@
+=== Thermal Throttling Benchmark (Redesigned) ===
+--- System Info ---
+Model: Mac17,3
+Chip: Apple M5
+Physical Cores: 10
+
+
+Thermal Throttling Benchmark complete
