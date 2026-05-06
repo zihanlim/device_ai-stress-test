@@ -1,0 +1,250 @@
+_LSOpenURLsWithCompletionHandler() failed for the application /Applications/Google Chrome.app with error -1712 for the URLs https://github.com/zihanlim/device_ai-stress-test, https://docs.python.org/3/, https://cloud.google.com, https://aws.amazon.com, https://github.com, https://stackoverflow.com, https://pytorch.org, https://www.tensorflow.org, https://huggingface.co, and https://claude.ai.
+=== Real Memory Pressure Benchmark ===
+
+  Warning: VS Code still running: 39944
+56430
+  Warning: Ollama still running: 57949
+  All apps cleaned up and verified
+
+--- Scenario 1: Idle baseline ---
+  T+0s: Active=2.67GB, Compressed=0.51GB, Free=0.06GB, Swap=0MB, Chrome=0MB, VS Code=2655MB, Ollama=36MB
+  T+5s: Active=2.70GB, Compressed=0.52GB, Free=0.07GB, Swap=0MB, Chrome=0MB, VS Code=2782MB, Ollama=36MB
+  T+10s: Active=2.69GB, Compressed=0.52GB, Free=0.09GB, Swap=0MB, Chrome=0MB, VS Code=2785MB, Ollama=36MB
+  T+15s: Active=2.69GB, Compressed=0.52GB, Free=0.06GB, Swap=0MB, Chrome=0MB, VS Code=2839MB, Ollama=36MB
+  T+20s: Active=2.68GB, Compressed=0.52GB, Free=0.10GB, Swap=0MB, Chrome=0MB, VS Code=2801MB, Ollama=36MB
+  T+26s: Active=2.58GB, Compressed=0.52GB, Free=0.12GB, Swap=0MB, Chrome=0MB, VS Code=2697MB, Ollama=36MB
+  T+31s: Active=2.54GB, Compressed=0.51GB, Free=0.11GB, Swap=0MB, Chrome=0MB, VS Code=2629MB, Ollama=36MB
+  T+36s: Active=2.53GB, Compressed=0.51GB, Free=0.12GB, Swap=0MB, Chrome=0MB, VS Code=2582MB, Ollama=36MB
+  T+41s: Active=2.46GB, Compressed=0.51GB, Free=0.19GB, Swap=0MB, Chrome=0MB, VS Code=2582MB, Ollama=36MB
+  T+46s: Active=2.44GB, Compressed=0.51GB, Free=0.25GB, Swap=0MB, Chrome=0MB, VS Code=2583MB, Ollama=36MB
+  T+51s: Active=2.43GB, Compressed=0.51GB, Free=0.24GB, Swap=0MB, Chrome=0MB, VS Code=2583MB, Ollama=36MB
+  T+56s: Active=2.45GB, Compressed=0.51GB, Free=0.24GB, Swap=0MB, Chrome=0MB, VS Code=2583MB, Ollama=36MB
+  SUMMARY: Peak Active=2.70GB, Avg Active=2.57GB, Peak Compressed=0.52GB
+
+--- Scenario 2: Browser only (10 tabs) ---
+  T+0s: Active=1.91GB, Compressed=2.02GB, Free=0.06GB, Swap=0MB, Chrome=3613MB, VS Code=1133MB, Ollama=24MB
+  T+5s: Active=2.02GB, Compressed=2.13GB, Free=0.06GB, Swap=0MB, Chrome=4367MB, VS Code=1266MB, Ollama=24MB
+  T+10s: Active=1.84GB, Compressed=2.12GB, Free=0.17GB, Swap=0MB, Chrome=4277MB, VS Code=1264MB, Ollama=24MB
+  T+15s: Active=1.92GB, Compressed=2.11GB, Free=0.20GB, Swap=0MB, Chrome=4284MB, VS Code=1265MB, Ollama=26MB
+  T+21s: Active=1.81GB, Compressed=2.10GB, Free=0.06GB, Swap=0MB, Chrome=4244MB, VS Code=1311MB, Ollama=26MB
+  T+26s: Active=1.97GB, Compressed=2.06GB, Free=0.14GB, Swap=0MB, Chrome=4298MB, VS Code=1305MB, Ollama=26MB
+  T+31s: Active=2.01GB, Compressed=1.97GB, Free=0.15GB, Swap=0MB, Chrome=4308MB, VS Code=1362MB, Ollama=26MB
+  T+36s: Active=2.09GB, Compressed=1.89GB, Free=0.11GB, Swap=0MB, Chrome=4308MB, VS Code=1467MB, Ollama=26MB
+  T+41s: Active=2.07GB, Compressed=1.88GB, Free=0.13GB, Swap=0MB, Chrome=4308MB, VS Code=1467MB, Ollama=26MB
+  T+46s: Active=2.04GB, Compressed=1.87GB, Free=0.08GB, Swap=0MB, Chrome=4309MB, VS Code=1472MB, Ollama=26MB
+  T+52s: Active=2.09GB, Compressed=1.87GB, Free=0.09GB, Swap=0MB, Chrome=4309MB, VS Code=1472MB, Ollama=26MB
+  T+57s: Active=2.10GB, Compressed=1.87GB, Free=0.12GB, Swap=0MB, Chrome=4316MB, VS Code=1473MB, Ollama=26MB
+  SUMMARY: Peak Active=2.10GB, Avg Active=1.99GB, Peak Compressed=2.13GB
+  Warning: VS Code still running: 39944
+56430
+  Warning: Ollama still running: 59543
+  All apps cleaned up and verified
+
+--- Scenario 3: IDE only (VS Code) ---
+  T+0s: Active=1.05GB, Compressed=0.64GB, Free=3.10GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+5s: Active=1.05GB, Compressed=0.64GB, Free=3.14GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+10s: Active=1.03GB, Compressed=0.64GB, Free=3.17GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+15s: Active=1.04GB, Compressed=0.64GB, Free=3.16GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+20s: Active=1.04GB, Compressed=0.64GB, Free=3.17GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+25s: Active=1.04GB, Compressed=0.64GB, Free=3.17GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+31s: Active=0.99GB, Compressed=0.64GB, Free=3.24GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+36s: Active=0.94GB, Compressed=0.64GB, Free=3.30GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+41s: Active=0.94GB, Compressed=0.64GB, Free=3.31GB, Swap=0MB, Chrome=0MB, VS Code=11MB, Ollama=35MB
+  T+46s: Active=1.63GB, Compressed=0.62GB, Free=1.98GB, Swap=0MB, Chrome=0MB, VS Code=1475MB, Ollama=35MB
+  T+51s: Active=2.47GB, Compressed=0.62GB, Free=0.44GB, Swap=0MB, Chrome=0MB, VS Code=2784MB, Ollama=35MB
+  T+56s: Active=2.38GB, Compressed=0.62GB, Free=0.57GB, Swap=0MB, Chrome=0MB, VS Code=2794MB, Ollama=35MB
+  SUMMARY: Peak Active=2.47GB, Avg Active=1.30GB, Peak Compressed=0.64GB
+
+--- Scenario 4: Light dev (VS Code + Browser 3 tabs) ---
+  T+0s: Active=2.58GB, Compressed=0.67GB, Free=0.14GB, Swap=0MB, Chrome=1429MB, VS Code=2605MB, Ollama=35MB
+  T+5s: Active=2.54GB, Compressed=0.67GB, Free=0.17GB, Swap=0MB, Chrome=1429MB, VS Code=2593MB, Ollama=35MB
+  T+10s: Active=2.73GB, Compressed=0.66GB, Free=0.12GB, Swap=0MB, Chrome=1431MB, VS Code=2447MB, Ollama=35MB
+  T+15s: Active=2.64GB, Compressed=0.66GB, Free=0.16GB, Swap=0MB, Chrome=1432MB, VS Code=2394MB, Ollama=35MB
+  T+21s: Active=2.57GB, Compressed=0.66GB, Free=0.21GB, Swap=0MB, Chrome=1433MB, VS Code=2389MB, Ollama=35MB
+  T+26s: Active=2.46GB, Compressed=0.66GB, Free=0.18GB, Swap=0MB, Chrome=1406MB, VS Code=2389MB, Ollama=35MB
+  T+31s: Active=2.54GB, Compressed=0.66GB, Free=0.18GB, Swap=0MB, Chrome=1408MB, VS Code=2389MB, Ollama=35MB
+  T+36s: Active=2.64GB, Compressed=0.66GB, Free=0.18GB, Swap=0MB, Chrome=1409MB, VS Code=2390MB, Ollama=35MB
+  T+41s: Active=2.58GB, Compressed=0.66GB, Free=0.31GB, Swap=0MB, Chrome=1409MB, VS Code=2389MB, Ollama=35MB
+  T+46s: Active=2.56GB, Compressed=0.66GB, Free=0.35GB, Swap=0MB, Chrome=1409MB, VS Code=2389MB, Ollama=35MB
+  T+51s: Active=2.57GB, Compressed=0.66GB, Free=0.34GB, Swap=0MB, Chrome=1409MB, VS Code=2389MB, Ollama=35MB
+  T+56s: Active=2.57GB, Compressed=0.66GB, Free=0.34GB, Swap=0MB, Chrome=1413MB, VS Code=2389MB, Ollama=35MB
+  SUMMARY: Peak Active=2.73GB, Avg Active=2.58GB, Peak Compressed=0.67GB
+  Warning: VS Code still running: 39944
+56430
+59642
+  Warning: Ollama still running: 60662
+  All apps cleaned up and verified
+
+--- Scenario 5: Daily dev (VS Code + Browser 10 tabs) ---
+  T+0s: Active=1.81GB, Compressed=2.19GB, Free=0.08GB, Swap=0MB, Chrome=3179MB, VS Code=1411MB, Ollama=25MB
+  T+5s: Active=1.77GB, Compressed=2.29GB, Free=0.11GB, Swap=0MB, Chrome=4143MB, VS Code=1354MB, Ollama=25MB
+  T+10s: Active=1.79GB, Compressed=2.26GB, Free=0.11GB, Swap=0MB, Chrome=4052MB, VS Code=1359MB, Ollama=25MB
+  T+16s: Active=1.61GB, Compressed=2.40GB, Free=0.06GB, Swap=0MB, Chrome=3793MB, VS Code=1280MB, Ollama=23MB
+  T+21s: Active=1.82GB, Compressed=2.26GB, Free=0.07GB, Swap=0MB, Chrome=3790MB, VS Code=1424MB, Ollama=23MB
+  T+26s: Active=1.95GB, Compressed=2.12GB, Free=0.07GB, Swap=0MB, Chrome=4003MB, VS Code=1440MB, Ollama=23MB
+  T+31s: Active=1.97GB, Compressed=2.06GB, Free=0.06GB, Swap=0MB, Chrome=4003MB, VS Code=1445MB, Ollama=23MB
+  T+36s: Active=1.98GB, Compressed=2.06GB, Free=0.09GB, Swap=0MB, Chrome=4007MB, VS Code=1446MB, Ollama=23MB
+  T+41s: Active=1.97GB, Compressed=2.05GB, Free=0.12GB, Swap=0MB, Chrome=4007MB, VS Code=1446MB, Ollama=23MB
+  T+46s: Active=1.97GB, Compressed=2.05GB, Free=0.12GB, Swap=0MB, Chrome=4010MB, VS Code=1448MB, Ollama=23MB
+  T+52s: Active=2.00GB, Compressed=2.03GB, Free=0.09GB, Swap=0MB, Chrome=4010MB, VS Code=1461MB, Ollama=23MB
+  T+57s: Active=2.01GB, Compressed=2.02GB, Free=0.08GB, Swap=0MB, Chrome=4022MB, VS Code=1462MB, Ollama=24MB
+  SUMMARY: Peak Active=2.01GB, Avg Active=1.89GB, Peak Compressed=2.40GB
+
+--- Scenario 6: Daily + Claude Code ---
+  T+0s: Active=1.34GB, Compressed=3.30GB, Free=0.05GB, Swap=0MB, Chrome=4903MB, VS Code=769MB, Ollama=9MB
+  T+5s: Active=1.33GB, Compressed=3.19GB, Free=0.06GB, Swap=0MB, Chrome=4846MB, VS Code=903MB, Ollama=9MB
+  T+10s: Active=1.44GB, Compressed=3.15GB, Free=0.06GB, Swap=0MB, Chrome=4870MB, VS Code=945MB, Ollama=9MB
+  T+16s: Active=1.49GB, Compressed=3.13GB, Free=0.06GB, Swap=0MB, Chrome=4889MB, VS Code=956MB, Ollama=12MB
+  T+21s: Active=1.41GB, Compressed=3.12GB, Free=0.06GB, Swap=0MB, Chrome=4898MB, VS Code=957MB, Ollama=12MB
+  T+26s: Active=1.56GB, Compressed=2.92GB, Free=0.06GB, Swap=0MB, Chrome=5133MB, VS Code=1026MB, Ollama=12MB
+  T+31s: Active=1.61GB, Compressed=2.83GB, Free=0.05GB, Swap=0MB, Chrome=5139MB, VS Code=1115MB, Ollama=12MB
+  T+36s: Active=1.62GB, Compressed=2.82GB, Free=0.09GB, Swap=0MB, Chrome=5139MB, VS Code=1115MB, Ollama=12MB
+  T+42s: Active=1.65GB, Compressed=2.80GB, Free=0.06GB, Swap=0MB, Chrome=5103MB, VS Code=1134MB, Ollama=12MB
+  T+47s: Active=1.66GB, Compressed=2.77GB, Free=0.07GB, Swap=0MB, Chrome=5145MB, VS Code=1135MB, Ollama=12MB
+  T+52s: Active=1.67GB, Compressed=2.76GB, Free=0.06GB, Swap=0MB, Chrome=5149MB, VS Code=1137MB, Ollama=12MB
+  T+57s: Active=1.69GB, Compressed=2.75GB, Free=0.06GB, Swap=0MB, Chrome=5184MB, VS Code=1137MB, Ollama=12MB
+  SUMMARY: Peak Active=1.69GB, Avg Active=1.54GB, Peak Compressed=3.30GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+  Warning: Ollama still running: 62780
+  All apps cleaned up and verified
+
+--- Scenario 7: Daily + 0.6B LLM ---
+  T+0s: Active=2.04GB, Compressed=1.13GB, Free=0.14GB, Swap=0MB, Chrome=4336MB, VS Code=25MB, Ollama=1022MB
+  T+5s: Active=2.05GB, Compressed=1.13GB, Free=0.14GB, Swap=0MB, Chrome=4342MB, VS Code=25MB, Ollama=1022MB
+  T+10s: Active=2.06GB, Compressed=1.12GB, Free=0.13GB, Swap=0MB, Chrome=4365MB, VS Code=25MB, Ollama=1022MB
+  T+15s: Active=2.00GB, Compressed=1.12GB, Free=0.06GB, Swap=0MB, Chrome=4369MB, VS Code=25MB, Ollama=1022MB
+  T+21s: Active=2.09GB, Compressed=1.12GB, Free=0.10GB, Swap=0MB, Chrome=4370MB, VS Code=25MB, Ollama=1022MB
+  T+26s: Active=1.52GB, Compressed=1.81GB, Free=0.05GB, Swap=0MB, Chrome=3429MB, VS Code=1540MB, Ollama=926MB
+  T+31s: Active=1.40GB, Compressed=2.34GB, Free=0.07GB, Swap=0MB, Chrome=2657MB, VS Code=1767MB, Ollama=885MB
+  T+37s: Active=1.34GB, Compressed=2.36GB, Free=0.06GB, Swap=0MB, Chrome=2406MB, VS Code=1700MB, Ollama=885MB
+  T+42s: Active=1.32GB, Compressed=2.39GB, Free=0.05GB, Swap=0MB, Chrome=2460MB, VS Code=1623MB, Ollama=885MB
+  T+47s: Active=1.39GB, Compressed=2.39GB, Free=0.06GB, Swap=0MB, Chrome=2537MB, VS Code=1592MB, Ollama=886MB
+  T+52s: Active=1.39GB, Compressed=2.44GB, Free=0.05GB, Swap=0MB, Chrome=2537MB, VS Code=1492MB, Ollama=886MB
+  T+57s: Active=1.30GB, Compressed=2.42GB, Free=0.07GB, Swap=0MB, Chrome=2544MB, VS Code=1477MB, Ollama=886MB
+  SUMMARY: Peak Active=2.09GB, Avg Active=1.66GB, Peak Compressed=2.44GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+63137
+  Warning: Ollama still running: 64093
+  All apps cleaned up and verified
+
+--- Scenario 8: Daily + 1.7B LLM ---
+  T+0s: Active=0.91GB, Compressed=2.43GB, Free=0.06GB, Swap=0MB, Chrome=1452MB, VS Code=830MB, Ollama=1676MB
+  T+5s: Active=1.03GB, Compressed=2.33GB, Free=0.06GB, Swap=0MB, Chrome=1565MB, VS Code=893MB, Ollama=1676MB
+  T+10s: Active=0.99GB, Compressed=2.32GB, Free=0.06GB, Swap=0MB, Chrome=1594MB, VS Code=899MB, Ollama=1678MB
+  T+16s: Active=1.09GB, Compressed=2.33GB, Free=0.06GB, Swap=0MB, Chrome=1656MB, VS Code=859MB, Ollama=1672MB
+  T+21s: Active=1.07GB, Compressed=2.38GB, Free=0.07GB, Swap=0MB, Chrome=1661MB, VS Code=812MB, Ollama=1623MB
+  T+26s: Active=0.99GB, Compressed=2.35GB, Free=0.06GB, Swap=0MB, Chrome=1655MB, VS Code=826MB, Ollama=1599MB
+  T+31s: Active=0.98GB, Compressed=2.41GB, Free=0.05GB, Swap=0MB, Chrome=1490MB, VS Code=767MB, Ollama=1598MB
+  T+36s: Active=1.02GB, Compressed=2.50GB, Free=0.06GB, Swap=0MB, Chrome=1399MB, VS Code=715MB, Ollama=1598MB
+  T+42s: Active=0.90GB, Compressed=2.46GB, Free=0.06GB, Swap=0MB, Chrome=1425MB, VS Code=860MB, Ollama=1597MB
+  T+47s: Active=1.02GB, Compressed=2.38GB, Free=0.06GB, Swap=0MB, Chrome=1220MB, VS Code=966MB, Ollama=1596MB
+  T+52s: Active=1.01GB, Compressed=2.35GB, Free=0.06GB, Swap=0MB, Chrome=1259MB, VS Code=924MB, Ollama=1596MB
+  T+57s: Active=0.99GB, Compressed=2.39GB, Free=0.06GB, Swap=0MB, Chrome=1284MB, VS Code=800MB, Ollama=1596MB
+  SUMMARY: Peak Active=1.09GB, Avg Active=1.00GB, Peak Compressed=2.50GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+63137
+64104
+  Warning: Ollama still running: 65440
+  All apps cleaned up and verified
+
+--- Scenario 9: Daily + 4B LLM ---
+  T+0s: Active=0.85GB, Compressed=1.58GB, Free=0.06GB, Swap=0MB, Chrome=1671MB, VS Code=11MB, Ollama=3047MB
+  T+5s: Active=0.88GB, Compressed=1.52GB, Free=0.07GB, Swap=0MB, Chrome=1744MB, VS Code=11MB, Ollama=3048MB
+  T+10s: Active=0.87GB, Compressed=1.53GB, Free=0.06GB, Swap=0MB, Chrome=1761MB, VS Code=11MB, Ollama=3049MB
+  T+15s: Active=0.87GB, Compressed=1.54GB, Free=0.06GB, Swap=0MB, Chrome=1832MB, VS Code=11MB, Ollama=3046MB
+  T+21s: Active=0.76GB, Compressed=1.60GB, Free=0.08GB, Swap=0MB, Chrome=1545MB, VS Code=11MB, Ollama=3045MB
+  T+26s: Active=0.83GB, Compressed=1.63GB, Free=0.06GB, Swap=0MB, Chrome=1508MB, VS Code=10MB, Ollama=3045MB
+  T+31s: Active=0.84GB, Compressed=1.60GB, Free=0.06GB, Swap=0MB, Chrome=1567MB, VS Code=10MB, Ollama=3046MB
+  T+36s: Active=0.87GB, Compressed=1.55GB, Free=0.06GB, Swap=0MB, Chrome=1591MB, VS Code=10MB, Ollama=3045MB
+  T+41s: Active=0.71GB, Compressed=1.67GB, Free=0.06GB, Swap=0MB, Chrome=1041MB, VS Code=9MB, Ollama=3041MB
+  T+46s: Active=0.70GB, Compressed=1.66GB, Free=0.06GB, Swap=0MB, Chrome=898MB, VS Code=39MB, Ollama=3039MB
+  T+52s: Active=0.58GB, Compressed=1.73GB, Free=0.06GB, Swap=0MB, Chrome=279MB, VS Code=1002MB, Ollama=3002MB
+  T+59s: Active=0.58GB, Compressed=1.73GB, Free=0.06GB, Swap=0MB, Chrome=246MB, VS Code=684MB, Ollama=3028MB
+  SUMMARY: Peak Active=0.88GB, Avg Active=0.78GB, Peak Compressed=1.73GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+63137
+66570
+66572
+66573
+66574
+66577
+66600
+  Warning: Ollama still running: 66559
+  All apps cleaned up and verified
+
+--- Scenario 10: Daily + 8B LLM ---
+  T+2s: Active=0.19GB, Compressed=0.95GB, Free=0.06GB, Swap=0MB, Chrome=37MB, VS Code=72MB, Ollama=4630MB
+  T+11s: Active=0.30GB, Compressed=0.95GB, Free=0.06GB, Swap=0MB, Chrome=39MB, VS Code=15MB, Ollama=4638MB
+  T+17s: Active=0.25GB, Compressed=0.77GB, Free=0.05GB, Swap=0MB, Chrome=60MB, VS Code=64MB, Ollama=4648MB
+  T+23s: Active=0.36GB, Compressed=0.82GB, Free=0.06GB, Swap=0MB, Chrome=22MB, VS Code=218MB, Ollama=4647MB
+  T+30s: Active=0.27GB, Compressed=0.75GB, Free=0.06GB, Swap=0MB, Chrome=20MB, VS Code=318MB, Ollama=4646MB
+  T+37s: Active=0.30GB, Compressed=0.96GB, Free=0.06GB, Swap=0MB, Chrome=41MB, VS Code=85MB, Ollama=5105MB
+  T+44s: Active=0.39GB, Compressed=0.52GB, Free=0.05GB, Swap=0MB, Chrome=59MB, VS Code=55MB, Ollama=5034MB
+  T+50s: Active=0.35GB, Compressed=0.59GB, Free=0.06GB, Swap=0MB, Chrome=17MB, VS Code=100MB, Ollama=4845MB
+  T+56s: Active=0.29GB, Compressed=0.87GB, Free=0.06GB, Swap=0MB, Chrome=21MB, VS Code=43MB, Ollama=4649MB
+  SUMMARY: Peak Active=0.39GB, Avg Active=0.30GB, Peak Compressed=0.96GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+63137
+  Warning: Ollama still running: 67443
+  All apps cleaned up and verified
+
+--- Scenario 11: Daily + dual LLMs (0.6B + 1.7B) ---
+  T+0s: Active=0.82GB, Compressed=2.06GB, Free=0.06GB, Swap=0MB, Chrome=538MB, VS Code=418MB, Ollama=2520MB
+  T+5s: Active=0.91GB, Compressed=1.90GB, Free=0.06GB, Swap=0MB, Chrome=557MB, VS Code=626MB, Ollama=2528MB
+  T+10s: Active=0.70GB, Compressed=2.04GB, Free=0.06GB, Swap=0MB, Chrome=542MB, VS Code=476MB, Ollama=2461MB
+  T+16s: Active=0.74GB, Compressed=2.05GB, Free=0.06GB, Swap=0MB, Chrome=608MB, VS Code=447MB, Ollama=2454MB
+  T+21s: Active=0.82GB, Compressed=2.10GB, Free=0.06GB, Swap=0MB, Chrome=568MB, VS Code=447MB, Ollama=2454MB
+  T+26s: Active=0.74GB, Compressed=2.05GB, Free=0.06GB, Swap=0MB, Chrome=444MB, VS Code=464MB, Ollama=2443MB
+  T+31s: Active=0.86GB, Compressed=2.01GB, Free=0.07GB, Swap=0MB, Chrome=515MB, VS Code=474MB, Ollama=2443MB
+  T+36s: Active=0.84GB, Compressed=2.03GB, Free=0.07GB, Swap=0MB, Chrome=547MB, VS Code=441MB, Ollama=2441MB
+  T+41s: Active=0.69GB, Compressed=2.09GB, Free=0.06GB, Swap=0MB, Chrome=390MB, VS Code=402MB, Ollama=2441MB
+  T+47s: Active=0.83GB, Compressed=2.01GB, Free=0.06GB, Swap=0MB, Chrome=493MB, VS Code=494MB, Ollama=2441MB
+  T+52s: Active=0.77GB, Compressed=2.12GB, Free=0.06GB, Swap=0MB, Chrome=442MB, VS Code=439MB, Ollama=2441MB
+  T+57s: Active=0.72GB, Compressed=2.06GB, Free=0.06GB, Swap=0MB, Chrome=464MB, VS Code=466MB, Ollama=2441MB
+  SUMMARY: Peak Active=0.91GB, Avg Active=0.79GB, Peak Compressed=2.12GB
+  Warning: VS Code still running: 39944
+56430
+59642
+60671
+63137
+67474
+  Warning: Ollama still running: 68916
+  All apps cleaned up and verified
+
+================================================================================
+REAL MEMORY PRESSURE BENCHMARK SUMMARY
+================================================================================
+Scenario                                 Peak Active     Peak Compressed Swap      
+--------------------------------------------------------------------------------
+Idle baseline                              2.70GB           0.52GB              0MB
+Browser only (10 tabs)                     2.10GB           2.13GB              0MB
+IDE only (VS Code)                         2.47GB           0.64GB              0MB
+Light dev (VS Code + Browser 3 tabs)       2.73GB           0.67GB              0MB
+Daily dev (VS Code + Browser 10 tabs)      2.01GB           2.40GB              0MB
+Daily + Claude Code                        1.69GB           3.30GB              0MB
+Daily + 0.6B LLM                           2.09GB           2.44GB              0MB
+Daily + 1.7B LLM                           1.09GB           2.50GB              0MB
+Daily + 4B LLM                             0.88GB           1.73GB              0MB
+Daily + 8B LLM                             0.39GB           0.96GB              0MB
+Daily + dual LLMs (0.6B + 1.7B)            0.91GB           2.12GB              0MB
+================================================================================
+
+Results saved to:
+  CSV: results/MacBookNeo-A18Pro/memory_pressure_real.csv
+  JSON: results/MacBookNeo-A18Pro/memory_pressure_real_summary.json
+  Log: results/MacBookNeo-A18Pro/memory_pressure_real_log.jsonl

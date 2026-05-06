@@ -2,6 +2,7 @@
 """
 Generate SOTA Model Parameter Comparison Plot
 Shows the massive scale difference between local models and cloud SOTA
+Uses log scale so small models remain visible alongside massive SOTA models
 """
 import matplotlib
 matplotlib.use('Agg')
@@ -10,7 +11,7 @@ import numpy as np
 
 # Model data: name, total params (billions), category
 models = [
-    # Local models (tested on MacBook Air M5)
+    # Local models (tested on MacBook Neo A18Pro 8GB)
     ("Qwen3 0.6B", 0.6, "Local"),
     ("Qwen3 1.7B", 1.7, "Local"),
     ("Qwen3 4B", 4, "Local"),
@@ -34,32 +35,43 @@ categories = [m[2] for m in models]
 # Colors
 colors = ['#3498db' if cat == "Local" else '#e74c3c' for cat in categories]
 
-fig, ax = plt.subplots(figsize=(12, 10))
+fig, ax = plt.subplots(figsize=(14, 10))
 fig.patch.set_facecolor('white')
 
-# Plot on linear scale
+# Plot on log scale to show relative differences properly
 bars = ax.barh(names, params, color=colors, edgecolor='black')
-ax.set_xlabel('Parameters (Billions)', fontsize=12)
-ax.set_title('AI Model Parameter Scale: Local vs SOTA Cloud (May 2026)', fontsize=14, fontweight='bold')
-ax.axvline(x=16, color='green', linestyle='--', linewidth=2, label='MacBook Air M5 Memory Limit')
+ax.set_xlabel('Parameters (Billions, log scale)', fontsize=12)
+ax.set_title('AI Model Parameter Scale: Local vs SOTA Cloud (May 2026)\nNote: Log scale — each step is 10x', fontsize=14, fontweight='bold')
+ax.set_xscale('log')
+ax.set_xlim([0.3, 20000])
+ax.axvline(x=8, color='orange', linestyle='--', linewidth=2, label='MacBook Neo 8GB Limit')
+ax.axvline(x=16, color='green', linestyle='--', linewidth=2, label='MacBook Air M5 16GB Limit')
 ax.axvline(x=30, color='blue', linestyle=':', linewidth=2, label='Largest Local Model Tested (30B)')
 
 # Add value labels
 for bar, val in zip(bars, params):
-    ax.text(bar.get_width() * 1.15, bar.get_y() + bar.get_height()/2,
-            f'{val:.0f}B' if val >= 100 else f'{val:.1f}B',
-            va='center', fontsize=9, fontweight='bold')
+    if val < 1:
+        label = f'{val:.1f}B'
+    elif val < 100:
+        label = f'{val:.0f}B'
+    else:
+        label = f'{val:.0f}B'
+    ax.text(bar.get_width() * 2, bar.get_y() + bar.get_height()/2,
+            label, va='center', fontsize=9, fontweight='bold')
 
 # Legend
 from matplotlib.patches import Patch
-legend_elements = [Patch(facecolor='#3498db', label='Local (Tested on M5)'),
-                   Patch(facecolor='#e74c3c', label='SOTA Cloud (API Required)'),
-                   plt.Line2D([0], [0], color='green', linestyle='--', label='16GB Memory Limit')]
+legend_elements = [
+    Patch(facecolor='#3498db', label='Local (Tested on Neo)'),
+    Patch(facecolor='#e74c3c', label='SOTA Cloud (API Required)'),
+    plt.Line2D([0], [0], color='orange', linestyle='--', label='Neo 8GB Limit'),
+    plt.Line2D([0], [0], color='green', linestyle='--', label='M5 16GB Limit'),
+]
 ax.legend(handles=legend_elements, loc='lower right', fontsize=10)
 ax.grid(True, alpha=0.3, axis='x')
 
 plt.tight_layout()
-output_path = '/Users/airnold/Developer/Stress_Test/results/plots/model_params_comparison.png'
+output_path = '/Users/arnold_neo/Developer/device_ai-stress-test/results/MacBookNeo-A18Pro/plots/model_params_comparison.png'
 plt.savefig(output_path, dpi=150, bbox_inches='tight')
 print(f"Saved: {output_path}")
 

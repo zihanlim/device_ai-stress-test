@@ -1,0 +1,12 @@
+scenario_num,scenario_name,peak_active_gb,avg_active_gb,peak_compressed_gb,avg_swap_mb,peak_chrome_mb,peak_vscode_mb,peak_ollama_mb
+1,Idle baseline,2.70,2.57,0.52,0.00,0,2839,36
+2,Browser only (10 tabs),2.10,1.99,2.13,0.00,4367,1473,26
+3,IDE only (VS Code),2.47,1.30,0.64,0.00,0,2794,35
+4,Light dev (VS Code + Browser 3 tabs),2.73,2.58,0.67,0.00,1433,2605,35
+5,Daily dev (VS Code + Browser 10 tabs),2.01,1.89,2.40,0.00,4143,1462,25
+6,Daily + Claude Code,1.69,1.54,3.30,0.00,5184,1137,12
+7,Daily + 0.6B LLM,2.09,1.66,2.44,0.00,4370,1767,1022
+8,Daily + 1.7B LLM,1.09,1.00,2.50,0.00,1661,966,1678
+9,Daily + 4B LLM,0.88,0.78,1.73,0.00,1832,1002,3049
+10,Daily + 8B LLM,0.39,0.30,0.96,0.00,60,318,5105
+11,Daily + dual LLMs (0.6B + 1.7B),0.91,0.79,2.12,0.00,608,626,2528

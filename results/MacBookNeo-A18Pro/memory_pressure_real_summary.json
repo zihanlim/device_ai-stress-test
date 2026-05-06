@@ -1,0 +1,98 @@
+{
+  "timestamp": "2026-05-06T16:04:21.069568",
+  "device_info": {
+    "memory_gb": 8.0,
+    "cpu": "Apple A18 Pro",
+    "model": "Mac17,5"
+  },
+  "scenarios": [
+    {
+      "scenario_num": 1,
+      "scenario_name": "Idle baseline",
+      "peak_active_gb": 2.698272705078125,
+      "avg_active_gb": 2.571882883707682,
+      "peak_compressed_gb": 0.520599365234375,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 2,
+      "scenario_name": "Browser only (10 tabs)",
+      "peak_active_gb": 2.096466064453125,
+      "avg_active_gb": 1.9878133138020833,
+      "peak_compressed_gb": 2.1330108642578125,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 3,
+      "scenario_name": "IDE only (VS Code)",
+      "peak_active_gb": 2.47357177734375,
+      "avg_active_gb": 1.3011817932128906,
+      "peak_compressed_gb": 0.63934326171875,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 4,
+      "scenario_name": "Light dev (VS Code + Browser 3 tabs)",
+      "peak_active_gb": 2.7279510498046875,
+      "avg_active_gb": 2.580794016520182,
+      "peak_compressed_gb": 0.669189453125,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 5,
+      "scenario_name": "Daily dev (VS Code + Browser 10 tabs)",
+      "peak_active_gb": 2.005889892578125,
+      "avg_active_gb": 1.8866462707519531,
+      "peak_compressed_gb": 2.40167236328125,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 6,
+      "scenario_name": "Daily + Claude Code",
+      "peak_active_gb": 1.6856231689453125,
+      "avg_active_gb": 1.5387992858886719,
+      "peak_compressed_gb": 3.299774169921875,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 7,
+      "scenario_name": "Daily + 0.6B LLM",
+      "peak_active_gb": 2.094451904296875,
+      "avg_active_gb": 1.6589152018229167,
+      "peak_compressed_gb": 2.4408721923828125,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 8,
+      "scenario_name": "Daily + 1.7B LLM",
+      "peak_active_gb": 1.087127685546875,
+      "avg_active_gb": 1.0002670288085938,
+      "peak_compressed_gb": 2.4990234375,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 9,
+      "scenario_name": "Daily + 4B LLM",
+      "peak_active_gb": 0.8765716552734375,
+      "avg_active_gb": 0.7769521077473959,
+      "peak_compressed_gb": 1.7344512939453125,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 10,
+      "scenario_name": "Daily + 8B LLM",
+      "peak_active_gb": 0.392364501953125,
+      "avg_active_gb": 0.2996436225043403,
+      "peak_compressed_gb": 0.959686279296875,
+      "avg_swap_mb": 0.0
+    },
+    {
+      "scenario_num": 11,
+      "scenario_name": "Daily + dual LLMs (0.6B + 1.7B)",
+      "peak_active_gb": 0.914764404296875,
+      "avg_active_gb": 0.7874247233072916,
+      "peak_compressed_gb": 2.1187744140625,
+      "avg_swap_mb": 0.0
+    }
+  ]
+}

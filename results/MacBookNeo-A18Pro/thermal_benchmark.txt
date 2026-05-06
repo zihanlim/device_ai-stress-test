@@ -1,0 +1,8 @@
+=== Thermal Throttling Benchmark (Redesigned) ===
+--- System Info ---
+Model: Mac17,5
+Chip: Apple A18 Pro
+Physical Cores: 6
+
+
+Thermal Throttling Benchmark complete

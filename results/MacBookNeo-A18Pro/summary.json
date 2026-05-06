@@ -1,0 +1,17 @@
+{
+    "device": {
+        "name": "MacBook-Neo A18Pro 8GB",
+        "tag": "MacBookNeo-A18Pro",
+        "hostname": "ARNOLD-NEOs-MacBook-Neo.local",
+        "date": "2026-05-06T11:06:23+08:00",
+        "os": "26.4.1"
+    },
+    "hardware": {
+        "model": "Mac17,5",
+        "chip": "Apple A18 Pro",
+        "physical_cores": 6,
+        "logical_cores": 6,
+        "memory_gb": 8.0,
+        "memory_mb": 8192
+    }
+}

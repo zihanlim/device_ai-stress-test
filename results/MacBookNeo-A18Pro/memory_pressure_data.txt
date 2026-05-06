@@ -1,0 +1,12 @@
+scenario,memory_used_mb,time_seconds,swap_used_mb
+Light_Baseline,2048,0,0
+Light_Browser,800,0,0
+Light_IDE,500,0,0
+Light_Terminal,100,0,0
+Light_Slack,100,0,0
+Light_Total,3548,0,0
+Medium_Baseline,2048,0,0
+Medium_LLM,4096,0,0
+Medium_Total,6144,0,0
+Heavy_Alloc,6553,0,0
+Heavy_Total,6553,0.55,0

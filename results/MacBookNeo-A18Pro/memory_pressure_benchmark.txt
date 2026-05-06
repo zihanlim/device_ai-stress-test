@@ -1,0 +1,42 @@
+=== Memory Pressure Benchmark ===
+--- System Memory Info ---
+Total Memory: 8.0 GB
+Page Size: 16384 bytes
+
+--- Scenario 1: Light Daily Usage ---
+(Simulates: Browser (10 tabs) + VSCode + Terminal + Slack)
+Estimated light usage: 3548 MB
+  Baseline: 2048 MB allocated, swap: 0 MB
+  Browser: 2848 MB allocated, swap: 0 MB
+  IDE: 3348 MB allocated, swap: 0 MB
+  Terminal: 3448 MB allocated, swap: 0 MB
+  Slack: 3548 MB allocated, swap: 0 MB
+Total allocated: 3548 MB
+Swap used: 0 MB
+Data written to: results/MacBookNeo-A18Pro/memory_pressure_data.txt
+
+--- Scenario 2: Medium Usage + Background LLM ---
+(Simulates: Light usage + Ollama/MLX running 7B model)
+Estimated with background LLM: 6144 MB
+Baseline: 2048 MB
+LLM Model: 6144 MB (total)
+Swap usage: 0 MB
+Data written to: results/MacBookNeo-A18Pro/memory_pressure_data.txt
+
+--- Scenario 3: 8GB Memory Pressure Test ---
+(Allocates 80% of memory to test swapping behavior)
+Total system memory: 8192 MB
+Testing with 8GB allocation...
+Swap before: 0 MB
+Allocating 6553 MB...
+Touching all pages (writing to memory)...
+Swap mid-test: 0 MB
+
+Performing memory-intensive operations...
+Memory access time (1000 samples): 0.553s
+Swap after: 0 MB (delta: 0 MB)
+
+Memory pressure test complete.
+Data written to: results/MacBookNeo-A18Pro/memory_pressure_data.txt
+
+Memory Pressure Benchmark complete

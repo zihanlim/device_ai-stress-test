@@ -1,0 +1,30 @@
+=== Daily Usage Benchmark ===
+--- System Memory ---
+Baseline memory: 21424 MB
+Baseline swap: 0 MB
+
+--- Scenario 1: Cold Start Simulation ---
+(Simulates fresh machine startup sequence)
+  Python import: 1ms
+  Data structures: 22ms (8MB)
+  Project files: 0ms
+  Total cold start: 24ms
+
+--- Scenario 2: Hot Start Simulation ---
+(Simulates resuming from warm state)
+  Hot resume: 0ms
+
+--- Scenario 3: Simulated Browser Tabs ---
+(Memory for 10 browser tabs)
+  10 tabs allocated: 22ms (76MB)
+
+--- Scenario 4: IDE Simulation ---
+  IDE workspace: 57ms (191MB)
+
+--- Scenario 5: Combined Workflow (Browser + IDE + Terminal) ---
+Traceback (most recent call last):
+  File "/tmp/daily_usage_benchmark.py", line 131, in <module>
+    _ = np.dot(browser[0], ide[:100, :100])
+ValueError: shapes (1000,1000) and (100,100) not aligned: 1000 (dim 1) != 100 (dim 0)
+
+Daily Usage Benchmark complete

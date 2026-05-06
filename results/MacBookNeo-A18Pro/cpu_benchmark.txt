@@ -1,0 +1,38 @@
+=== CPU Benchmark ===
+--- System Info ---
+Model: Mac17,5
+CPU Brand: Apple A18 Pro
+Physical Cores: 6
+Logical Cores: 6
+L2 Cache: 4.0 MB
+L3 Cache: 
+
+--- Single-threaded Performance ---
+Fibonacci(100000): 0.0928s
+Fibonacci(500000): 2.3358s
+Fibonacci(1000000): 9.9462s
+
+Sieve(100000): 0.0042s (9592 primes)
+Sieve(500000): 0.0230s (41538 primes)
+Sieve(1000000): 0.0489s (78498 primes)
+
+--- Multi-core Scaling Test ---
+Running single-core baseline...
+  Single-core (n=5000000): 10.35s
+Running 1-core test...
+  1-core: 10.51s (speedup: 0.98x, efficiency: 98%)
+Running 2-core test...
+  2-core: 7.81s (speedup: 1.32x, efficiency: 66%)
+Running 4-core test...
+  4-core: 5.37s (speedup: 1.93x, efficiency: 48%)
+Running 6-core test...
+  6-core: 4.47s (speedup: 2.32x, efficiency: 39%)
+
+--- ML Workload Simulation ---
+MatMul 512x512: 0.35 ms/op (0.76 TFLOPS)
+MatMul 1024x1024: 1.67 ms/op (1.29 TFLOPS)
+MatMul 2048x2048: 15.25 ms/op (1.13 TFLOPS)
+
+CPU Benchmark complete. Data saved to: results/MacBookNeo-A18Pro/cpu_data.txt
+
+CPU Benchmark complete
