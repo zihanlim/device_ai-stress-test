@@ -4,12 +4,26 @@
 
 ---
 
+## Executive Summary
+
+This study evaluates which MacBook configuration can handle each team's peak memory workload without swap. We surveyed six simultaneous application tiers (Options 1–6, from basic office apps to local LLM/PyTorch environments), estimated realistic RAM peaks for each, and mapped them against four hardware configs: MacBook Neo 8GB, MacBook Air 16GB, MacBook Air 24GB, and MacBook Pro 36GB.
+
+**Key findings:** The MacBook Neo 8GB and MacBook Air 16GB covers the majority of ERP workloads (Options 1–4), with exception on users who might need to use PowerQuery to parse large amounts of data, concurrently while using other RAM heavy apps. Docker/VM-heavy work requires 24GB. Only local LLM or ML training workloads (Option 6) genuinely need 36GB. Three config tiers are insufficient for their next option tier due to aggressive swap requirements — memory compression alone cannot bridge the gap and would often end up Out-of-Memory(OOM), leading apps to crash.
+
+**Recommendation:** Based on the poll results, most ERP roles will be covered by **MacBook Neo 8GB and MacBook Air 16GB** (Options 1–4). If Docker/VMs are needed, bump to **MacBook Air 24GB**. Only ML workloads (Option 6) justify **MacBook Pro 36-128GB**.
+
+---
+
+We did a poll on 7th May 2026 to better understand ERP members daily workload.
+
 <div style="border: 2px solid black; border-radius: 8px; padding: 16px; margin: 16px 0;">
 
 ##### Poll:
-Hi Team,
-
-To ensure our new MacBook configurations handle your workload without lag, I need to understand your simultaneous application usage. Please select the highest tier that represents your typical "peak" workflow (all listed apps running at the same time). This will help us determine which roles require memory upgrades. Thanks
+>Hi Team,
+>
+>To ensure our new MacBook configurations handle your workload without lag, I need to understand your simultaneous application usage. Please select the highest tier that represents your typical "peak" workflow (all listed apps running at the same time). This will help us determine which roles require memory upgrades. 
+>
+>Thanks
 
 **Your daily peak workflow matches the following (using them simultaneously):**
 
@@ -43,7 +57,7 @@ To ensure our new MacBook configurations handle your workload without lag, I nee
 | Jupyter/SQL/Python | ~2.5 GB | Data science workloads; ~1–4 GB |
 | Docker | ~2.5 GB | Per active container; ~1–4 GB total |
 | Virtual Machines (UTM/Parallels) | ~6 GB | Per VM; Windows VMs typically heavier; range ~4–8 GB |
-| Local LLMs | ~10 GB | 7B models ~4–6 GB; 70B models ~16+ GB; range ~4–16 GB |
+| Local LLMs | ~10 GB | 7B models ~4–6 GB; 13B models ~8–12 GB; 70B models ~35–40 GB (QLoRA/4-bit); range ~4–40 GB |
 | PyTorch/TensorFlow | ~9 GB | Inference ~2–4 GB; training ~8–16 GB; range ~2–16 GB |
 | RL Environments | ~10 GB | Gym + models + experience buffers; range ~4–16 GB |
 
