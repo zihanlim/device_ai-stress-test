@@ -8,7 +8,7 @@
 
 This study evaluates which MacBook configuration can handle each team's peak memory workload without swap. We surveyed six simultaneous application tiers (Options 1–6, from basic office apps to local LLM/PyTorch environments), estimated realistic RAM peaks for each, and mapped them against four hardware configs: MacBook Neo 8GB, MacBook Air 16GB, MacBook Air 24GB, and MacBook Pro 36GB.
 
-**Key findings:** The MacBook Neo 8GB and MacBook Air 16GB covers the majority of ERP workloads (Options 1–4), with exception on users who might need to use PowerQuery to parse large amounts of data, concurrently while using other RAM heavy apps. Docker/VM-heavy work requires 24GB. Only local LLM or ML training workloads (Option 6) genuinely need 36GB. Three config tiers are insufficient for their next option tier due to aggressive swap requirements — memory compression alone cannot bridge the gap and would often end up Out-of-Memory(OOM), leading apps to crash.
+**Key findings:** The MacBook Neo 8GB and MacBook Air 16GB covers the majority of ERP workloads (Options 1–4), with exception on users who might need to use PowerQuery to parse from large datasets, concurrently while using other RAM heavy apps. Docker/VM-heavy work requires 24GB. Only local LLM or ML training workloads (Option 6) genuinely need 36GB. Three config tiers are insufficient for their next option tier due to aggressive swap requirements — memory compression alone cannot bridge the gap and would often end up Out-of-Memory(OOM), leading apps to crash.
 
 **Recommendation:** Based on the poll results, most ERP roles will be covered by **MacBook Neo 8GB and MacBook Air 16GB** (Options 1–4). If Docker/VMs are needed, bump to **MacBook Air 24GB**. Only ML workloads (Option 6) justify **MacBook Pro 36-128GB**.
 
@@ -63,6 +63,17 @@ We did a poll on 7th May 2026 to better understand ERP members daily workload.
 
 ---
 ![alt text](gantt_chart.png)
+
+<div style="border: 2px solid black; border-radius: 8px; padding: 16px; margin: 16px 0;">
+
+**Understanding the color coding:**
+- **Green** — RAM fully covers the workload peak. No swap, no compression overhead.
+- **Amber** — RAM is close to the peak. macOS memory compression (`Apple Memory Compressor`) handles the gap actively. Performance remains acceptable; swap is possible but light.
+- **Red** — Peak exceeds RAM by a significant margin. Active disk swap is unavoidable; performance drops 10–100× and red memory pressure will trigger. Running apps will crash or be force-quit.
+
+*Memory compression is always active on Apple Silicon — it helps in amber cases but cannot compensate for large gaps. Swap means the system is paging to SSD/flash, not just compressing in RAM.*
+
+</div>
 
 **Total Peak Estimates by Options**
 
