@@ -20,9 +20,7 @@ We did a poll on 7th May 2026 to better understand ERP members daily workload.
 
 ##### Poll:
 >Hi Team,
->
 >To ensure our new MacBook configurations handle your workload without lag, I need to understand your simultaneous application usage. Please select the highest tier that represents your typical "peak" workflow (all listed apps running at the same time). This will help us determine which roles require memory upgrades. 
->
 >Thanks
 
 **Your daily peak workflow matches the following (using them simultaneously):**
@@ -35,7 +33,7 @@ We did a poll on 7th May 2026 to better understand ERP members daily workload.
 * [ ] **Option 6:** Option 5 + Local LLMs/PyTorch/TensorFlow/RL Environments
 
 ##### Poll results:
-
+![alt text](poll_results.png)
 
 </div>
 
